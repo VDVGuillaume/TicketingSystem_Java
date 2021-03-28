@@ -1,5 +1,5 @@
 package domain;
 
-public class ApplicationUser {
+public class ApplicationUser implements Serializable {
 
 }

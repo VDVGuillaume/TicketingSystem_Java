@@ -1,44 +1,67 @@
 package domain;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 @Entity
-@NamedQuery(
-	    name="Ticket.findByNr",
-	    query="SELECT t FROM Tickets t WHERE t.Ticketnr = :ticketnr"
-	)
-
-
+@NamedQueries({
+	
+	@NamedQuery(
+		    name="Ticket.findByNr",
+		    query="SELECT t FROM Ticket t WHERE t.ticketnr = :ticketnr"
+		)	
+	
+})
+@Table(name="Tickets")
 public class Ticket implements Serializable {
 
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Ticketnr")
 	public int ticketnr;
+	@Column(name = "Title")
 	public String title;
 	public TicketStatus status;
-	public DateTime dateAdded;
-	public DateTime dateClosed;
+	public Date dateAdded;
+	public Date dateClosed;
 	public String description;
-	public Client client;
-	public ApplicationUser assignedEngineer;
+	//public Client client;
+	//public ApplicationUser assignedEngineer;
+	@OneToOne
+	@JoinColumn(name = "TypeId")
 	public TicketType type;
-	@ManyToOne
+	@OneToMany
 	public List<Comment> comments;
-	@ManyToOne
+	@OneToMany
 	public List<Attachment> attachments;
+	@OneToOne
+	@JoinColumn(name = "ContractId")
 	public Contract contract;
+	
+	
+	
+	@Override	
+	public String toString() {
+		return String.format("TicketId %d - Title : %s",this.ticketnr,this.title);
+	}
 	
 	
 }

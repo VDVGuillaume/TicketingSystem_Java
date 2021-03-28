@@ -1,6 +1,7 @@
 package gui;
 
 import domain.DomainController;
+import domain.Ticket;
 import persistence.SQLDatabaseConnection;
 
 import java.sql.ResultSet;
@@ -21,7 +22,9 @@ public class ConsoleUi {
 
     private void doStandardJob() {
     	
-    	System.out.print(domainController.getTicketByNr(1));
+    	Ticket ticket = domainController.getTicketByNr(1);
+    	
+    	System.out.println(ticket);
 
     }
     

@@ -18,7 +18,7 @@ public class TicketDaoJpa extends GenericDaoJpa<Ticket> implements TicketDao  {
     public Ticket getTicketByNr(int ticketnr) throws EntityNotFoundException {
         try {
             return em.createNamedQuery("Ticket.findByNr", Ticket.class)
-                 .setParameter("Ticketnr", ticketnr)
+                 .setParameter("ticketnr", ticketnr)
                 .getSingleResult();
         } catch (NoResultException ex) {
             throw new EntityNotFoundException();
