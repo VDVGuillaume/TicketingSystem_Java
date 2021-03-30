@@ -1,17 +1,24 @@
 package gui;
 
+import domain.ApplicationUser;
 import domain.Ticket;
 import java.util.Scanner;
 
 import controller.DomainController;
+import controller.LoginController;
+import controller.TicketController;
 
 public class ConsoleUi {
+    private final TicketController ticketController;
     private final DomainController domainController;
+    private final LoginController loginController;
     private final Scanner in = new Scanner(System.in);
     
-    public ConsoleUi(DomainController dc) {
-       domainController = dc;
-    }
+    public ConsoleUi(TicketController tc, DomainController dc, LoginController lc) {
+       ticketController = tc;
+	   domainController =  dc;
+	   loginController = lc;
+	  }
 
     public void run() {
         doStandardJob();
@@ -20,9 +27,10 @@ public class ConsoleUi {
 
     private void doStandardJob() {
     	
-    	Ticket ticket = domainController.getTicketByNr(1);
+    	Ticket ticket = ticketController.getTicketByNr(1);
+    	ApplicationUser user =  loginController.getUserByUserName("customer");
     	
-    	System.out.println(ticket);
+    	System.out.printf("Ticket : %s%nUser:%s",ticket,user);
 
     }
     

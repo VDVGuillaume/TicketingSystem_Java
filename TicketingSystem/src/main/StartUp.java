@@ -1,6 +1,8 @@
 package main;
 
 import controller.DomainController;
+import controller.LoginController;
+import controller.TicketController;
 import gui.ConsoleUi;
 
 public class StartUp {
@@ -9,8 +11,8 @@ public class StartUp {
     }
 
     private void run() {
-        new ConsoleUi(new DomainController()).run();
-        
+        ConsoleUi console = new ConsoleUi(new TicketController(), new DomainController(), new LoginController());
+        console.run();
     }
     
 }
