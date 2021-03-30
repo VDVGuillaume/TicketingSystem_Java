@@ -1,6 +1,6 @@
 package main;
 
-import domain.DomainController;
+import controller.DomainController;
 import gui.ConsoleUi;
 
 public class StartUp {

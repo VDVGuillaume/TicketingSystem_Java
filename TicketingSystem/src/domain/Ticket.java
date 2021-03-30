@@ -43,8 +43,12 @@ public class Ticket implements Serializable {
 	public Date dateAdded;
 	public Date dateClosed;
 	public String description;
-	//public Client client;
-	//public ApplicationUser assignedEngineer;
+	@ManyToOne
+	@JoinColumn(name="ClientID")
+	public Client client;
+	@OneToOne
+	@JoinColumn(name="AssignedEngineerId")
+	public ApplicationUser assignedEngineer;
 	@OneToOne
 	@JoinColumn(name = "TypeId")
 	public TicketType type;
@@ -52,7 +56,7 @@ public class Ticket implements Serializable {
 	public List<Comment> comments;
 	@OneToMany
 	public List<Attachment> attachments;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "ContractId")
 	public Contract contract;
 	

@@ -1,11 +1,9 @@
 package gui;
 
-import domain.DomainController;
 import domain.Ticket;
-import persistence.SQLDatabaseConnection;
-
-import java.sql.ResultSet;
 import java.util.Scanner;
+
+import controller.DomainController;
 
 public class ConsoleUi {
     private final DomainController domainController;
