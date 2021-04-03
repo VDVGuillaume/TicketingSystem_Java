@@ -1,24 +1,28 @@
 package main;
 
+import controller.DomainController;
 import gui.LoginPanelController;
+import gui.WelcomeScreenController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 public class StartUpGuiClientApp extends Application {
-
+	private Stage primaryStage;
+	
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new LoginPanelController());
-        stage.setScene(scene);
+    	var domainController = new DomainController();
+    	primaryStage = stage;
+    	
+    	LoginPanelController root = new LoginPanelController(domainController);
+		Scene scene = new Scene(root);
 
-        // The stage will not get smaller than its preferred (initial) size.
-        stage.setOnShown((WindowEvent t) -> {
-            stage.setMinWidth(stage.getWidth());
-            stage.setMinHeight(stage.getHeight());
-        });
-        stage.show();
+		primaryStage.setTitle("Sokoban");
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
     }
 
     public static void main(String... args) {

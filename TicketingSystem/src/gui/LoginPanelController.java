@@ -1,39 +1,27 @@
 package gui;
 
-import domain.ApplicationUser;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
+import controller.DomainController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.PasswordField;
 
-public class LoginPanelController extends VBox {
+public class LoginPanelController extends BaseScreenController {
 	
 	@FXML
 	private TextField txtUsername;
 	@FXML
 	private PasswordField pwdPassword;
 	
-	public LoginPanelController() {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPanel.fxml"));
-    loader.setRoot(this);
-    loader.setController(this);
-    try {
-        loader.load();
-    } catch (IOException ex) {
-        throw new RuntimeException(ex);
-    }
+	public LoginPanelController(DomainController domainController) {
+		super(domainController, "LoginPanel.fxml");
 	}
 	
 	public void login() {
 		//TO DO
 	}
 
+	@Override
+	protected void loadData() {
+		// TODO Auto-generated method stub	
+	}
 }

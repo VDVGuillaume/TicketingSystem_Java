@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 @Entity
 @NamedQueries({
