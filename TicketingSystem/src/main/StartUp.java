@@ -14,5 +14,4 @@ public class StartUp {
         ConsoleUi console = new ConsoleUi(new TicketController(), new DomainController(), new LoginController());
         console.run();
     }
-    
 }

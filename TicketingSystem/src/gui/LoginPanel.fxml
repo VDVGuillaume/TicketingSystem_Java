@@ -38,7 +38,7 @@
                </HBox.margin>
             </ImageView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="613.13671875" />
-            <Text id="txtLogin" fill="#004087" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-cursor: hand;" text="LOGIN" textAlignment="RIGHT" wrappingWidth="45.13671875">
+            <Text fill="#004087" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-cursor: hand;" text="LOGIN" textAlignment="RIGHT" wrappingWidth="45.13671875">
                <HBox.margin>
                   <Insets top="20.0" />
                </HBox.margin>
@@ -60,7 +60,7 @@
                   <Insets bottom="20.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <TextField style="-fx-border-color: #004087;">
+            <TextField fx:id="txtUsername" style="-fx-border-color: #004087;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -73,12 +73,12 @@
                   <Insets bottom="20.0" top="40.0" />
                </VBox.margin>
             </Text>
-            <PasswordField style="-fx-border-color: #004087;">
+            <PasswordField  fx:id="pwdPassword" style="-fx-border-color: #004087;">
                <font>
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <Button mnemonicParsing="false" style="-fx-background-color: #004087;" text="Login" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#login" style="-fx-background-color: #004087;" text="Login" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" top="40.0" />
                </VBox.margin>
