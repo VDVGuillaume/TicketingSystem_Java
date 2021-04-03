@@ -2,7 +2,6 @@ package main;
 
 import controller.DomainController;
 import gui.LoginPanelController;
-import gui.WelcomeScreenController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
