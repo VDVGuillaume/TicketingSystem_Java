@@ -1,7 +1,4 @@
-module sokoban88 {
-	//exports persistentie;
-	//exports ui;
-	//exports util;
+module TicketingSystem {
 	exports gui;
 	exports main;
 	exports domain;
@@ -10,6 +7,9 @@ module sokoban88 {
 	exports controller;
 	exports controller_interfaces;
 	exports repository;
+	exports Constants;
+	exports Helpers;
+	exports Providers;
 
 	requires java.sql;
 	requires javafx.base;

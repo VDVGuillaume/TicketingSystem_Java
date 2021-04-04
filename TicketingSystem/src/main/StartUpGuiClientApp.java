@@ -22,7 +22,7 @@ public class StartUpGuiClientApp extends Application {
     	LoginPanelController root = new LoginPanelController(provider);
 		Scene scene = new Scene(root);
 
-		primaryStage.setTitle("Sokoban");
+		primaryStage.setTitle("TicketingSystem");
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
