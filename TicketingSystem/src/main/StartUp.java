@@ -13,10 +13,11 @@ public class StartUp {
     }
 
     private void run() {
-    	var repository = new UserLoginAttemptDaoJpa();
+    	var repository = new UserRepository();
     	
-    	// var user = repository.getUserByUsername("supportmanager");
+    	var user = repository.getUserByUsername("supportmanager");
     	
+    	var stophere = true;
     	/*
         ConsoleUi console = new ConsoleUi(new TicketController(), new DomainController(), new LoginController());
         console.run();

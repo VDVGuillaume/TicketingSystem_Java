@@ -27,4 +27,5 @@ module TicketingSystem {
 	requires org.junit.jupiter.params;
 	
 	opens gui to javafx.graphics, javafx.fxml;
+	opens domain;
 }
