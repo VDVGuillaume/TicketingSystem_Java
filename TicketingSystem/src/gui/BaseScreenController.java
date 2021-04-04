@@ -1,16 +1,14 @@
 package gui;
 
 import java.io.IOException;
+
+import Providers.ControllerProvider;
 import controller.DomainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
 public abstract class BaseScreenController extends BorderPane{
-	protected DomainController domainController;
-
-	protected BaseScreenController(DomainController domainController, String resource)  {
-		this.domainController = domainController;
-		
+	protected BaseScreenController(String resource)  {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
 		loader.setController(this);
 		loader.setRoot(this);

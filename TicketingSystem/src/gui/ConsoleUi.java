@@ -28,14 +28,9 @@ public class ConsoleUi {
     private void doStandardJob() {
     	
     	Ticket ticket = ticketController.getTicketByNr(1);
-    	ApplicationUser user =  loginController.getUserByUserName("customer");
+    	//ApplicationUser user =  loginController.getUserByUserName("customer");
     	
-    	System.out.printf("Ticket : %s%nUser:%s",ticket,user);
+    	//System.out.printf("Ticket : %s%nUser:%s",ticket,user);
 
-    }
-    
-    
-    
-    
-    
+    }   
 }

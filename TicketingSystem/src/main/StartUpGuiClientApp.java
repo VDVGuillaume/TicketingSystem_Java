@@ -1,6 +1,8 @@
 package main;
 
+import Providers.ControllerProvider;
 import controller.DomainController;
+import controller_interfaces.IDomainController;
 import gui.LoginPanelController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,10 +14,12 @@ public class StartUpGuiClientApp extends Application {
 	
     @Override
     public void start(Stage stage) {
-    	var domainController = new DomainController();
+    	IDomainController domainController = (IDomainController) new DomainController();
+    	
+    	var provider = new ControllerProvider(domainController);
     	primaryStage = stage;
     	
-    	LoginPanelController root = new LoginPanelController(domainController);
+    	LoginPanelController root = new LoginPanelController(provider);
 		Scene scene = new Scene(root);
 
 		primaryStage.setTitle("Sokoban");

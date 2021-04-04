@@ -1,5 +1,6 @@
 package gui;
 
+import Providers.ControllerProvider;
 import controller.DomainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -12,8 +13,9 @@ public class LoginPanelController extends BaseScreenController {
 	@FXML
 	private PasswordField pwdPassword;
 	
-	public LoginPanelController(DomainController domainController) {
-		super(domainController, "LoginPanel.fxml");
+	public LoginPanelController(ControllerProvider provider) {
+		// todo extract necessary controllers from provider(implement into provider if necessary).
+		super("LoginPanel.fxml");
 	}
 	
 	public void login() {

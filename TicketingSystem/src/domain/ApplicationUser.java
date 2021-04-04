@@ -36,6 +36,7 @@ public class ApplicationUser implements Serializable {
 	String concurrencyStamp;
 	Date LockoutEnd;
 	Boolean LockoutEnabled;
+	int AccessFailedCount;
 	
 	
 	@Override
@@ -44,4 +45,41 @@ public class ApplicationUser implements Serializable {
 		return String.format("%s-%s",this.userName,this.email);
 	}	
 	
+	public String getId() {
+		return this.id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+	public String getPasswordHash() {
+		return this.passwordHash;
+	}
+	
+	public void setUsername(String username) {
+		this.userName = username;
+	}
+	
+	public String getUsername() {
+		return this.userName;
+	}
+	
+	public void setLockoutEnd(Date lockoutEnd) {
+		this.LockoutEnd = lockoutEnd;
+	}
+	
+	public Date getLockoutEnd() {
+		return this.LockoutEnd;
+	}
+	
+	public void setAccessFailedCount(int accessFailedCount) {
+		this.AccessFailedCount = accessFailedCount;
+	}
+	public int getAccessFailedCount() {
+		return this.AccessFailedCount;
+	}
 }

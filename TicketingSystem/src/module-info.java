@@ -5,7 +5,11 @@ module sokoban88 {
 	exports gui;
 	exports main;
 	exports domain;
-	//exports exceptions;
+	exports exceptions;
+	exports testing;
+	exports controller;
+	exports controller_interfaces;
+	exports repository;
 
 	requires java.sql;
 	requires javafx.base;
@@ -16,6 +20,11 @@ module sokoban88 {
 	requires javafx.swing;
 	requires java.persistence;
 	requires com.microsoft.sqlserver.jdbc;
+	requires junit;
+	requires org.junit.jupiter.api;
+	requires org.mockito;
+	requires mockito.junit.jupiter;
+	requires org.junit.jupiter.params;
 	
 	opens gui to javafx.graphics, javafx.fxml;
 }
