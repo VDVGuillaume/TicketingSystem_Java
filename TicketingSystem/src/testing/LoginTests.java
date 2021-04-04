@@ -92,7 +92,8 @@ class LoginTests {
 		
 		Assertions.assertEquals(Constants.ERROR_LOGIN_FAILED, exception.getMessage());
 		Mockito.verify(loginRepository).createUserLoginAttempt(dateNow, username, false);
-		Mockito.verify(loginRepository).increaseAccessFailedCount(id, 1);
+		Mockito.verify(loginRepository).updateAccessFailedCount(user);
+		Assertions.assertEquals(user.getAccessFailedCount(), 1);
 	}
 	
 	@ParameterizedTest
@@ -115,6 +116,8 @@ class LoginTests {
 		loginController.login(username, password);
 		
 		Mockito.verify(loginRepository).createUserLoginAttempt(dateNow, username, true);
+		Mockito.verify(loginRepository).updateAccessFailedCount(user);
+		Assertions.assertEquals(user.getAccessFailedCount(), 0);
 	}
 	
 	private static Stream<Arguments> get_valid_logins(){

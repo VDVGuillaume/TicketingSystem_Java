@@ -2,6 +2,8 @@ package repository;
 
 import java.util.List;
 
+import domain.ApplicationUser;
+
 public interface GenericDao<T> {
     public List<T> findAll();  
     public <U> T get(U id);

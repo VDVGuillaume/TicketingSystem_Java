@@ -3,6 +3,8 @@ package repository;
 import domain.ApplicationUser;
 import domain.Ticket;
 
+import java.time.Instant;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.NamedQuery;
