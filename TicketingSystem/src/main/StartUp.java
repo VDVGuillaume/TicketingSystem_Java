@@ -1,5 +1,6 @@
 package main;
 
+import controller.ClientController;
 import controller.DomainController;
 import controller.LoginController;
 import controller.TicketController;
@@ -13,6 +14,7 @@ public class StartUp {
     }
 
     private void run() {
+<<<<<<< HEAD
     	var repository = new UserRepository();
     	
     	var user = repository.getUserByUsername("supportmanager");
@@ -20,7 +22,10 @@ public class StartUp {
     	var stophere = true;
     	/*
         ConsoleUi console = new ConsoleUi(new TicketController(), new DomainController(), new LoginController());
+=======
+        ConsoleUi console = new ConsoleUi(new TicketController(), new DomainController(), new LoginController(), new ClientController());
+>>>>>>> Added create client method & persistence
         console.run();
-        */
+        
     }
 }
