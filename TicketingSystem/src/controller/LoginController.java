@@ -46,11 +46,13 @@ public class LoginController {
 		userRepo.createUserLoginAttempt(date, username, loginSucceeded);
 		
 		if(!loginSucceeded) {
-			userRepo.updateAccessFailedCount(user.getId(), user.getAccessFailedCount() + 1);
+			user.setAccessFailedCount(user.getAccessFailedCount() + 1);
+			userRepo.updateAccessFailedCount(user);
 			throw new ValidationException(Constants.ERROR_LOGIN_FAILED);
 		}
 		
 		// login succeeded!
-		userRepo.updateAccessFailedCount(user.getId(), 0);
+		user.setAccessFailedCount(0);
+		userRepo.updateAccessFailedCount(user);
 	}
 }
