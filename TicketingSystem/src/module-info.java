@@ -25,6 +25,7 @@ module TicketingSystem {
 	requires org.mockito;
 	requires mockito.junit.jupiter;
 	requires org.junit.jupiter.params;
+	requires java.instrument;
 	
 	opens gui to javafx.graphics, javafx.fxml;
 	opens domain;

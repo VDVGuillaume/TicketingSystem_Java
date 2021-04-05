@@ -20,5 +20,6 @@ public class StartUp {
     	var user = repository.getUserByUsername("supportmanager");
     	
     	var stophere = true;
+    	System.out.println(user.getUsername() + user.getId());
     }
 }
