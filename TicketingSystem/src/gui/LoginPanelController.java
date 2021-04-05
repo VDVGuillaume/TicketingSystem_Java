@@ -2,9 +2,12 @@ package gui;
 
 import Providers.ControllerProvider;
 import controller.DomainController;
+import controller.LoginController;
+import exceptions.ValidationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.text.Text;
 
 public class LoginPanelController extends BaseScreenController {
 	
@@ -12,14 +15,25 @@ public class LoginPanelController extends BaseScreenController {
 	private TextField txtUsername;
 	@FXML
 	private PasswordField pwdPassword;
+	@FXML
+	private Text lblValidation;
+	
+	private LoginController _lc;
 	
 	public LoginPanelController(ControllerProvider provider) {
-		// todo extract necessary controllers from provider(implement into provider if necessary).
 		super("LoginPanel.fxml");
+		_lc = new LoginController();
 	}
 	
 	public void login() {
-		//TO DO
+		try
+		{
+			_lc.login(txtUsername.getText(), pwdPassword.getText());
+		}
+		catch (ValidationException e)
+		{
+			lblValidation.setText(e.getMessage());
+		}
 	}
 
 	@Override
