@@ -15,16 +15,40 @@ public class UserRepository implements IUserRepository {
     
 	@Override
 	public ApplicationUser getUserByUsername(String username) {
-		return userDao.getUserByUserName(username);
+		ApplicationUser result = (ApplicationUser)null;
+		try {
+			GenericDaoJpa.startTransaction();	
+			result = userDao.getUserByUserName(username);
+			GenericDaoJpa.commitTransaction();
+		}catch(Exception ex){
+			GenericDaoJpa.rollbackTransaction();
+			throw ex;
+		}
+		
+		return result;
 	}
 
 	@Override
 	public void createUserLoginAttempt(Instant date, String username, boolean succeeded) {
-		userLoginAttemptDao.insert(new UserLoginAttempt(date.toString(), username, succeeded));		
+		try {
+			GenericDaoJpa.startTransaction();	
+			userLoginAttemptDao.insert(new UserLoginAttempt(date.toString(), username, succeeded));		
+			GenericDaoJpa.commitTransaction();
+		}catch(Exception ex){
+			GenericDaoJpa.rollbackTransaction();
+			throw ex;
+		}	
 	}
 
 	@Override
 	public void updateAccessFailedCount(ApplicationUser user) {
-		userDao.update(user);
+		try {
+			GenericDaoJpa.startTransaction();	
+			userDao.update(user);
+			GenericDaoJpa.commitTransaction();
+		}catch(Exception ex){
+			GenericDaoJpa.rollbackTransaction();
+			throw ex;
+		}	
 	}
 }

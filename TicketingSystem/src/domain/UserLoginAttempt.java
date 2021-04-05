@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name="UserLoginAttempts")
+@Entity
 public class UserLoginAttempt implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +27,9 @@ public class UserLoginAttempt implements Serializable {
 		this.date = date;
 		this.username = username;
 		this.success = success;
+	}
+	
+	public UserLoginAttempt() {
+		
 	}
 }
