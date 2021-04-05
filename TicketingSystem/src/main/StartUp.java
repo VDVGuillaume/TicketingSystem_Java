@@ -20,8 +20,5 @@ public class StartUp {
     	var user = repository.getUserByUsername("supportmanager");
     	
     	var stophere = true;
-    	
-    	
-
     }
 }
