@@ -6,6 +6,7 @@ import Providers.ControllerProvider;
 import controller.DomainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public abstract class BaseScreenController extends BorderPane{
 	protected BaseScreenController(String resource)  {
@@ -19,6 +20,10 @@ public abstract class BaseScreenController extends BorderPane{
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
+	}
+	
+	protected Stage getStage() {
+    return (Stage) this.getScene().getWindow();
 	}
 
 	// method to override with child implementation of this class

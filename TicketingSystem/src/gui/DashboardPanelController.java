@@ -11,36 +11,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class LoginPanelController extends BaseScreenController {
-	
-	@FXML
-	private TextField txtUsername;
-	@FXML
-	private PasswordField pwdPassword;
-	@FXML
-	private Text lblValidation;
-	
-	private LoginController _lc;
+public class DashboardPanelController extends BaseScreenController {
+
 	private ControllerProvider _provider;
 	
-	public LoginPanelController(ControllerProvider provider) {
-		super("LoginPanel.fxml");
-		_lc = new LoginController();
+	public DashboardPanelController(ControllerProvider provider) {
+		super("DashboardPanel.fxml");
 		_provider = provider;
-	}
-	
-	public void login() {
-		try
-		{
-			_lc.login(txtUsername.getText(), pwdPassword.getText());
-		}
-		catch (ValidationException e)
-		{
-			lblValidation.setText(e.getMessage());
-			return;
-		}
-
-		openDashboard();
 	}
 	
 	private void openDashboard() {
