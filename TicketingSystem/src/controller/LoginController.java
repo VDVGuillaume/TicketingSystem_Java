@@ -30,9 +30,13 @@ public class LoginController {
 	}
 	
 	public void login(String username, String password) {
-		var user = userRepo.getUserByUsername(username);
-		
-		if(user == null) {
+		ApplicationUser user = null;
+		try
+		{
+			user = userRepo.getUserByUsername(username);
+		}
+		catch (Exception ex)
+		{
 			throw new ValidationException(Constants.ERROR_LOGIN_USER_NOT_FOUND);
 		}
 		
