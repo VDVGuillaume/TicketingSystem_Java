@@ -3,9 +3,10 @@ package main;
 import Providers.ControllerProvider;
 import controller.DomainController;
 import controller_interfaces.IDomainController;
-import gui.LoginPanelController;
+import gui.MainViewController;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -19,13 +20,17 @@ public class StartUpGuiClientApp extends Application {
     	var provider = new ControllerProvider(domainController);
 			primaryStage = stage;
 			
-			LoginPanelController root = new LoginPanelController(provider);
+			MainViewController root = new MainViewController(provider);
 			Scene scene = new Scene(root);
 			
-			primaryStage.setTitle("TicketingSystem - Login");
+			primaryStage.setTitle("TicketingSystem");
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
+			//TODO icon doesn't work yet
+			primaryStage.getIcons().add(new Image("file:../resources/icon.png"));
 			primaryStage.show();
+			
+			root.openLogin();
     }
 
     public static void main(String... args) {

@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class LoginPanelController extends BaseScreenController {
+public class LoginViewController extends BaseScreenController {
 	
 	@FXML
 	private TextField txtUsername;
@@ -20,19 +20,21 @@ public class LoginPanelController extends BaseScreenController {
 	@FXML
 	private Text lblValidation;
 	
-	private LoginController _lc;
-	private ControllerProvider _provider;
+	private LoginController loginController;
+	private ControllerProvider provider;
+	private MainViewController mainViewController;
 	
-	public LoginPanelController(ControllerProvider provider) {
-		super("LoginPanel.fxml");
-		_lc = new LoginController();
-		_provider = provider;
+	public LoginViewController(ControllerProvider provider, MainViewController mainViewController) {
+		super("loginView.fxml");
+		this.loginController = new LoginController();
+		this.provider = provider;
+		this.mainViewController = mainViewController;
 	}
 	
 	public void login() {
 		try
 		{
-			_lc.login(txtUsername.getText(), pwdPassword.getText());
+			this.loginController.login(txtUsername.getText(), pwdPassword.getText());
 		}
 		catch (ValidationException e)
 		{
@@ -40,18 +42,7 @@ public class LoginPanelController extends BaseScreenController {
 			return;
 		}
 
-		openDashboard();
-	}
-	
-	private void openDashboard() {
-		Stage stage = getStage();
-		DashboardPanelController root = new DashboardPanelController(_provider);
-		Scene scene = new Scene(root);
-		
-		stage.setTitle("TicketingSystem - Dashboard");
-		stage.setResizable(false);
-		stage.setScene(scene);
-		stage.show();
+		this.mainViewController.openDashboard();
 	}
 
 	@Override

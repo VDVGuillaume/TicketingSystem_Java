@@ -11,18 +11,18 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class DashboardPanelController extends BaseScreenController {
+public class DashboardViewController extends BaseScreenController {
 
 	private ControllerProvider _provider;
 	
-	public DashboardPanelController(ControllerProvider provider) {
-		super("DashboardPanel.fxml");
+	public DashboardViewController(ControllerProvider provider) {
+		super("dashboardView.fxml");
 		_provider = provider;
 	}
 	
 	private void openDashboard() {
 		Stage stage = getStage();
-		DashboardPanelController root = new DashboardPanelController(_provider);
+		DashboardViewController root = new DashboardViewController(_provider);
 		Scene scene = new Scene(root);
 		
 		stage.setTitle("TicketingSystem - Dashboard");
