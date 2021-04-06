@@ -36,7 +36,5 @@ public class ConsoleUi {
     			"09356215321","test@test.be","testvoornaam","testachternaam");
     	
     	
-    	//System.out.printf("Ticket : %s%nUser:%s",ticket,user);
-
     }   
 }
