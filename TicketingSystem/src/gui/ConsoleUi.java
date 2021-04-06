@@ -30,11 +30,10 @@ public class ConsoleUi {
 
     private void doStandardJob() {
     	
-    	Ticket ticket = ticketController.getTicketByNr(1);
-    	//ApplicationUser user =  loginController.getUserByUserName("customer");
-    	clientController.createClient("teststraat",10,"teststad","testland",1234,"testnaam",
-    			"09356215321","test@test.be","testvoornaam","testachternaam");
+    	clientController.getClients().forEach(c -> System.out.printf("%s%n",c.name));
     	
     	
-    }   
+    }  
+    
+    
 }

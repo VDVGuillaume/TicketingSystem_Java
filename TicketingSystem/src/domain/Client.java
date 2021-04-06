@@ -12,11 +12,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+	
+	@NamedQuery(
+		    name="Client.getAll",
+		    query="SELECT c FROM Client c"
+		)	
+	
+})
 @Table(name="Clients")
 public class Client implements Serializable {
 
@@ -34,10 +44,10 @@ public class Client implements Serializable {
 	ArrayList<Contact> contacts;
 	public Date dateCreated;
 	
-	public Client(String name,Address adress) {
+	public Client(String name,Address address) {
 		
-		this.name = name;
-		this.address= adress;	
+		setName(name);
+		setAddress(address);	
 		contacts = new ArrayList<Contact>();
 		telephoneNumbers = new ArrayList<String>();
 		dateCreated = new Date();
@@ -55,6 +65,23 @@ public class Client implements Serializable {
 		contacts.add(new Contact(email,firstname,surname));
 		
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 	
 	
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +44,9 @@ public class ClientController {
 		return matcher.matches();
 	}
 	
+	public List<Client> getClients(){
+		return clientRepo.getClients();		
+	}
 	
 
 }
