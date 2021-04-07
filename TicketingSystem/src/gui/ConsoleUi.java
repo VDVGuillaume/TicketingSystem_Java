@@ -1,6 +1,7 @@
 package gui;
 
 import domain.ApplicationUser;
+import domain.Client;
 import domain.Ticket;
 import java.util.Scanner;
 
@@ -30,8 +31,13 @@ public class ConsoleUi {
 
     private void doStandardJob() {
     	
-    	clientController.getClients().forEach(c -> System.out.printf("%s%n",c.name));
+    	Client client = clientController.getClientById(4);
+    	System.out.println(client.name);
+    	client.setName("André");
+    	clientController.updateClient(client);
     	
+    	Client client1 = clientController.getClientById(4);
+    	System.out.println(client1.name);
     	
     }  
     

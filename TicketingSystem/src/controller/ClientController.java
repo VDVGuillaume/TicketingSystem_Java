@@ -44,8 +44,16 @@ public class ClientController {
 		return matcher.matches();
 	}
 	
+	public void updateClient(Client client) {
+		 clientRepo.updateClient(client);;
+	}
+	
 	public List<Client> getClients(){
 		return clientRepo.getClients();		
+	}
+	
+	public Client getClientById(int id) {
+		return clientRepo.getClientById(id);
 	}
 	
 

@@ -24,7 +24,13 @@ import javax.persistence.Table;
 	@NamedQuery(
 		    name="Client.getAll",
 		    query="SELECT c FROM Client c"
+		),	
+	
+	@NamedQuery(
+		    name="Client.getById",
+		    query="SELECT c FROM Client c WHERE c.id = :id"
 		)	
+	
 	
 })
 @Table(name="Clients")
@@ -34,12 +40,12 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	public String name;
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	public Address address;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@ElementCollection
 	ArrayList<String> telephoneNumbers;
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="clientID")
 	ArrayList<Contact> contacts;
 	public Date dateCreated;
@@ -72,6 +78,10 @@ public class Client implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	public Address getAddress() {
