@@ -26,7 +26,7 @@ public class StartUpGuiClientApp extends Application {
 			primaryStage.setTitle("TicketingSystem");
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
-			//TODO icon doesn't work yet
+			//Add icons in 2 sizes. JavaFX chooses correct size for different uses.
 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/favicon16x16.png")));
 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/favicon32x32.png")));
 			primaryStage.show();
