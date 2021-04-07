@@ -27,7 +27,8 @@ public class StartUpGuiClientApp extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			//TODO icon doesn't work yet
-			primaryStage.getIcons().add(new Image("file:../resources/icon.png"));
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/favicon16x16.png")));
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/favicon32x32.png")));
 			primaryStage.show();
 			
 			root.openLogin();
