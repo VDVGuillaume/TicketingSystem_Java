@@ -21,13 +21,11 @@ public class LoginViewController extends BaseScreenController {
 	private Text lblValidation;
 	
 	private LoginController loginController;
-	private ControllerProvider provider;
 	private MainViewController mainViewController;
 	
 	public LoginViewController(ControllerProvider provider, MainViewController mainViewController) {
-		super("loginView.fxml");
+		super("LoginView.fxml", provider);
 		this.loginController = new LoginController();
-		this.provider = provider;
 		this.mainViewController = mainViewController;
 	}
 	

@@ -11,26 +11,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class DashboardViewController extends BaseScreenController {
-
-	private ControllerProvider _provider;
+public class UsersViewController extends BaseScreenController {
+	
 	private MainViewController mainViewController;
 	
-	public DashboardViewController(ControllerProvider provider, MainViewController mainViewController) {
-		super("DashboardView.fxml", provider);
+	public UsersViewController(ControllerProvider provider, MainViewController mainViewController) {
+		super("UsersView.fxml", provider);
 		this.mainViewController = mainViewController;
-	}
-	
-	public void openUsers() {
-		this.mainViewController.openUsers();
-	}
-	
-	public void openClients() {
-		//this.mainViewController.openClients();
-	}
-	
-	public void openSystemUsers() {
-		//this.mainViewController.openSystemUsers();
 	}
 
 	@Override

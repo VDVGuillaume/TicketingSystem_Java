@@ -15,13 +15,12 @@ import javafx.stage.Window;
 
 public class MainViewController extends BaseScreenController {
 
-	private ControllerProvider _provider;
 	private LoginViewController loginViewController;
 	private DashboardViewController dashboardViewController;
+	private UsersViewController usersViewController;
 	
 	public MainViewController(ControllerProvider provider) {
-		super("mainView.fxml");
-		_provider = provider;
+		super("mainView.fxml", provider);
 	}
 	
 	public void openLogin() {
@@ -32,7 +31,7 @@ public class MainViewController extends BaseScreenController {
 		
 		if (loginViewController == null)
 		{
-			loginViewController = new LoginViewController(_provider, this);
+			loginViewController = new LoginViewController(this.provider, this);
 		}
 		
 		this.setCenter(loginViewController);
@@ -47,10 +46,24 @@ public class MainViewController extends BaseScreenController {
 		
 		if (dashboardViewController == null)
 		{
-			dashboardViewController = new DashboardViewController(_provider);
+			dashboardViewController = new DashboardViewController(this.provider, this);
 		}
 		
 		this.setCenter(dashboardViewController);
+	}
+	
+	public void openUsers() {
+
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Gebruikers");
+		
+		if (usersViewController == null)
+		{
+			usersViewController = new UsersViewController(this.provider, this);
+		}
+		
+		this.setCenter(usersViewController);
 	}
 
 	@Override
