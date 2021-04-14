@@ -42,8 +42,9 @@ public class ApplicationUser implements Serializable {
 	Date LockoutEnd;
 	Boolean LockoutEnabled;
 	int AccessFailedCount;
-	
-	
+	String firstName;
+	String lastName;
+		
 	@ManyToMany
 	@JoinTable(
 	  name = "AspNetUserRoles", 
@@ -129,5 +130,21 @@ public class ApplicationUser implements Serializable {
 	public String getCompany() {
 		return "";
 		//TODO 
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getFirstName() {
+		return this.firstName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public String getLastName() {
+		return this.lastName;
 	}
 }

@@ -16,6 +16,8 @@ public class UsersViewController extends BaseScreenController {
 	@FXML
 	public TableColumn tblColName;
 	@FXML
+	public TableColumn tblColFirstName;
+	@FXML
 	public TableColumn tblColEmail;
 	@FXML
 	public TableColumn tblColStatus;
@@ -34,7 +36,8 @@ public class UsersViewController extends BaseScreenController {
 		this.userController = new UserController();
 		
 		tblColUsername.setCellValueFactory(new PropertyValueFactory<>("userName"));
-		tblColName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+		tblColFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+		tblColName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		tblColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tblColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 		tblColRole.setCellValueFactory(new PropertyValueFactory<>("role"));
