@@ -59,7 +59,7 @@ class LoginTests {
 		String username = "test";
 		String password = "P@ssword1";
 		var user = new ApplicationUser();
-		user.setUsername(username);
+		user.setUserName(username);
 		user.setAccessFailedCount(accessFailedCount);
 		user.addUserRole(new ApplicationUserRole(Constants.ADMINISTRATOR_ROLE));
 		
@@ -80,7 +80,7 @@ class LoginTests {
 		String id = "1e6db034-8dca-410f-a411-eb6cca114e48";
 		var user = new ApplicationUser();
 		var dateNow = Instant.now();
-		user.setUsername(username);
+		user.setUserName(username);
 		user.setPasswordHash(passwordHashed);
 		user.setId(id);		
 		user.addUserRole(new ApplicationUserRole("Klant"));
@@ -103,7 +103,7 @@ class LoginTests {
 	public void Login_Invalid_Login_Failed(String id, String username, String passwordHashed, String password) {
 		var user = new ApplicationUser();
 		var dateNow = Instant.now();
-		user.setUsername(username);
+		user.setUserName(username);
 		user.setPasswordHash(passwordHashed);
 		user.setId(id);
 		user.addUserRole(new ApplicationUserRole(Constants.ADMINISTRATOR_ROLE));
@@ -129,7 +129,7 @@ class LoginTests {
 	public void Login_valid_should_login(String id, String username, String passwordHashed, String password) {
 		var user = new ApplicationUser();
 		var dateNow = Instant.now();
-		user.setUsername(username);
+		user.setUserName(username);
 		user.setPasswordHash(passwordHashed);
 		user.setId(id);		
 		user.addUserRole(new ApplicationUserRole(Constants.ADMINISTRATOR_ROLE));

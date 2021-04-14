@@ -1,6 +1,8 @@
 package repository;
 
 import java.time.Instant;
+import java.util.List;
+
 import domain.ApplicationUser;
 import domain.UserLoginAttempt;
 
@@ -50,5 +52,10 @@ public class UserRepository implements IUserRepository {
 			GenericDaoJpa.rollbackTransaction();
 			throw ex;
 		}	
+	}
+
+	@Override
+	public List<ApplicationUser> getAll() {
+		return userDao.findAll();
 	}
 }

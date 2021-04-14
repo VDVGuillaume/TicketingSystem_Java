@@ -1,8 +1,6 @@
 package main;
 
-import Providers.ControllerProvider;
 import controller.DomainController;
-import controller_interfaces.IDomainController;
 import gui.MainViewController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,12 +13,9 @@ public class StartUpGuiClientApp extends Application {
 	
     @Override
     public void start(Stage stage) {
-    	IDomainController domainController = (IDomainController) new DomainController();
-    	
-    	var provider = new ControllerProvider(domainController);
-			primaryStage = stage;
+   			primaryStage = stage;
 			
-			MainViewController root = new MainViewController(provider);
+			MainViewController root = new MainViewController();
 			Scene scene = new Scene(root);
 			
 			primaryStage.setTitle("TicketingSystem");

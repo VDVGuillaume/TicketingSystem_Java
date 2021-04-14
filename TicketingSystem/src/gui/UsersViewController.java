@@ -1,27 +1,52 @@
 package gui;
 
-import Providers.ControllerProvider;
-import controller.DomainController;
-import controller.LoginController;
-import exceptions.ValidationException;
+import controller.UserController;
+import domain.ApplicationUser;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UsersViewController extends BaseScreenController {
+	@FXML
+	public TableView<ApplicationUser> tblViewUsers;
+	
+	@FXML
+	public TableColumn tblColUsername;
+	@FXML
+	public TableColumn tblColName;
+	@FXML
+	public TableColumn tblColEmail;
+	@FXML
+	public TableColumn tblColStatus;
+	@FXML
+	public TableColumn tblColRole;
+	@FXML
+	public TableColumn tblColCompany;
+	
 	
 	private MainViewController mainViewController;
+	private UserController userController;
 	
-	public UsersViewController(ControllerProvider provider, MainViewController mainViewController) {
-		super("UsersView.fxml", provider);
+	public UsersViewController(MainViewController mainViewController) {
+		super("UsersView.fxml");
 		this.mainViewController = mainViewController;
-	}
+		this.userController = new UserController();
+		
+		tblColUsername.setCellValueFactory(new PropertyValueFactory<>("userName"));
+		tblColName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+		tblColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+		tblColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+		tblColRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+		tblColCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
 
+		loadData();
+	}
+	
 	@Override
 	protected void loadData() {
-		// TODO Auto-generated method stub	
+		var users = userController.getAllUsers();
+		tblViewUsers.getItems().clear();
+		tblViewUsers.getItems().addAll(users);
 	}
 }

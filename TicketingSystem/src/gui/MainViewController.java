@@ -1,6 +1,5 @@
 package gui;
 
-import Providers.ControllerProvider;
 import controller.DomainController;
 import controller.LoginController;
 import exceptions.ValidationException;
@@ -19,8 +18,8 @@ public class MainViewController extends BaseScreenController {
 	private DashboardViewController dashboardViewController;
 	private UsersViewController usersViewController;
 	
-	public MainViewController(ControllerProvider provider) {
-		super("mainView.fxml", provider);
+	public MainViewController() {
+		super("mainView.fxml");
 	}
 	
 	public void openLogin() {
@@ -31,7 +30,7 @@ public class MainViewController extends BaseScreenController {
 		
 		if (loginViewController == null)
 		{
-			loginViewController = new LoginViewController(this.provider, this);
+			loginViewController = new LoginViewController(this);
 		}
 		
 		this.setCenter(loginViewController);
@@ -46,7 +45,7 @@ public class MainViewController extends BaseScreenController {
 		
 		if (dashboardViewController == null)
 		{
-			dashboardViewController = new DashboardViewController(this.provider, this);
+			dashboardViewController = new DashboardViewController(this);
 		}
 		
 		this.setCenter(dashboardViewController);
@@ -60,7 +59,7 @@ public class MainViewController extends BaseScreenController {
 		
 		if (usersViewController == null)
 		{
-			usersViewController = new UsersViewController(this.provider, this);
+			usersViewController = new UsersViewController(this);
 		}
 		
 		this.setCenter(usersViewController);

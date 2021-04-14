@@ -1,6 +1,5 @@
 package gui;
 
-import Providers.ControllerProvider;
 import controller.DomainController;
 import controller.LoginController;
 import exceptions.ValidationException;
@@ -23,8 +22,8 @@ public class LoginViewController extends BaseScreenController {
 	private LoginController loginController;
 	private MainViewController mainViewController;
 	
-	public LoginViewController(ControllerProvider provider, MainViewController mainViewController) {
-		super("LoginView.fxml", provider);
+	public LoginViewController(MainViewController mainViewController) {
+		super("LoginView.fxml");
 		this.loginController = new LoginController();
 		this.mainViewController = mainViewController;
 	}

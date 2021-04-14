@@ -1,6 +1,5 @@
 package gui;
 
-import Providers.ControllerProvider;
 import controller.DomainController;
 import controller.LoginController;
 import exceptions.ValidationException;
@@ -13,11 +12,10 @@ import javafx.stage.Stage;
 
 public class DashboardViewController extends BaseScreenController {
 
-	private ControllerProvider _provider;
 	private MainViewController mainViewController;
 	
-	public DashboardViewController(ControllerProvider provider, MainViewController mainViewController) {
-		super("DashboardView.fxml", provider);
+	public DashboardViewController(MainViewController mainViewController) {
+		super("DashboardView.fxml");
 		this.mainViewController = mainViewController;
 	}
 	

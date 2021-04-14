@@ -73,12 +73,20 @@ public class ApplicationUser implements Serializable {
 		return this.passwordHash;
 	}
 	
-	public void setUsername(String username) {
+	public void setUserName(String username) {
 		this.userName = username;
 	}
 	
-	public String getUsername() {
+	public String getUserName() {
 		return this.userName;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return this.email;
 	}
 	
 	public void setLockoutEnd(Date lockoutEnd) {
@@ -104,5 +112,22 @@ public class ApplicationUser implements Serializable {
 		if(this.userRoles == null)
 			this.userRoles = new ArrayList<ApplicationUserRole>();
 		this.userRoles.add(role);
+	}
+	
+	public String getStatus() {
+		if(getAccessFailedCount() >= 5) {
+			return "Geblokkeerd";
+		}
+		
+		return "Actief";
+	}
+	
+	public String getRole() {
+		return this.userRoles.get(0).getName();		
+	}
+	
+	public String getCompany() {
+		return "";
+		//TODO 
 	}
 }

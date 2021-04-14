@@ -5,7 +5,6 @@ module TicketingSystem {
 	exports exceptions;
 	exports testing;
 	exports controller;
-	exports controller_interfaces;
 	exports repository;
 	exports Constants;
 	exports Helpers;
