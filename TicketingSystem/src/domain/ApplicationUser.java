@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,7 +34,6 @@ public class ApplicationUser implements Serializable {
 	
 	@Id	
 	String id;
-	int clientId;
 	String userName;
 	String email;
 	String passwordHash;
@@ -44,6 +44,10 @@ public class ApplicationUser implements Serializable {
 	int AccessFailedCount;
 	String firstName;
 	String lastName;
+	
+	@ManyToOne
+	@JoinColumn(name="ClientID")
+	public Client client;
 		
 	@ManyToMany
 	@JoinTable(
@@ -128,8 +132,10 @@ public class ApplicationUser implements Serializable {
 	}
 	
 	public String getCompany() {
-		return "";
-		//TODO 
+		if(client == null)
+			return "";
+		
+		return client.getName();
 	}
 	
 	public void setFirstName(String firstName) {
