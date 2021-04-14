@@ -10,7 +10,7 @@ public class UserRepository implements IUserRepository {
 
     public UserRepository(){
     	this.userDao = new UserDaoJpa();
-    	userLoginAttemptDao = new UserLoginAttemptDaoJpa();
+    	this.userLoginAttemptDao = new UserLoginAttemptDaoJpa();
     }
     
 	@Override

@@ -10,6 +10,7 @@
     <class>domain.Contract</class>
     <class>domain.TicketType</class>
     <class>domain.ApplicationUser</class>
+    <class>domain.ApplicationUserRole</class>
     <class>domain.UserLoginAttempt</class>
     <class>domain.Client</class>
     <properties>

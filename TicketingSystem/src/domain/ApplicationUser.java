@@ -2,13 +2,19 @@ package domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 
 
 
@@ -20,8 +26,7 @@ import javax.persistence.Table;
 	@NamedQuery(
 		    name="ApplicationUser.findUserByUserName",
 		    query="SELECT u FROM ApplicationUser u WHERE u.userName = :userName"
-		)	
-	
+		)
 })
 @Table(name ="AspNetUsers")
 public class ApplicationUser implements Serializable {
@@ -37,6 +42,14 @@ public class ApplicationUser implements Serializable {
 	Date LockoutEnd;
 	Boolean LockoutEnabled;
 	int AccessFailedCount;
+	
+	
+	@ManyToMany
+	@JoinTable(
+	  name = "AspNetUserRoles", 
+	  joinColumns = @JoinColumn(name = "UserId"), 
+	  inverseJoinColumns = @JoinColumn(name = "RoleId"))
+	List<ApplicationUserRole> userRoles = new ArrayList<ApplicationUserRole>();
 	
 	
 	@Override
@@ -81,5 +94,15 @@ public class ApplicationUser implements Serializable {
 	}
 	public int getAccessFailedCount() {
 		return this.AccessFailedCount;
+	}
+	
+	public List<ApplicationUserRole> getUserRoles(){
+		return this.userRoles;
+	}
+	
+	public void addUserRole(ApplicationUserRole role) {
+		if(this.userRoles == null)
+			this.userRoles = new ArrayList<ApplicationUserRole>();
+		this.userRoles.add(role);
 	}
 }

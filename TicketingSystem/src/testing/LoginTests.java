@@ -19,6 +19,7 @@ import Constants.Constants;
 import Providers.DateProvider;
 import controller.LoginController;
 import domain.ApplicationUser;
+import domain.ApplicationUserRole;
 import exceptions.ValidationException;
 import repository.IUserRepository;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,6 +61,7 @@ class LoginTests {
 		var user = new ApplicationUser();
 		user.setUsername(username);
 		user.setAccessFailedCount(accessFailedCount);
+		user.addUserRole(new ApplicationUserRole(Constants.ADMINISTRATOR_ROLE));
 		
 		Mockito
 			.when(loginRepository.getUserByUsername(username))
@@ -70,6 +72,32 @@ class LoginTests {
 		Assertions.assertEquals(Constants.ERROR_LOGIN_USER_LOCKED_OUT, exception.getMessage());
 	}
 	
+	@Test
+	public void Login_Invalid_User_Role_Invalid() {
+		String username = "test";
+		String password = "P@ssword1";
+		String passwordHashed = "AQAAAAEAACcQAAAAEHyR6dRkAGYN1RYz/i5No2WV8jUsA3t1HgduqnS5VL5MYn6dT1jw8Uh/55eCoWnSzg==";
+		String id = "1e6db034-8dca-410f-a411-eb6cca114e48";
+		var user = new ApplicationUser();
+		var dateNow = Instant.now();
+		user.setUsername(username);
+		user.setPasswordHash(passwordHashed);
+		user.setId(id);		
+		user.addUserRole(new ApplicationUserRole("Klant"));
+		
+		Mockito
+			.when(loginRepository.getUserByUsername(username))
+			.thenReturn(user);
+	
+		Mockito
+			.when(dateProvider.getCurrentDate())
+			.thenReturn(dateNow);
+		
+		var exception = Assertions.assertThrows(ValidationException.class, () -> loginController.login(username, password));
+		
+		Assertions.assertEquals(Constants.ERROR_LOGIN_NO_VALID_ROLE, exception.getMessage());
+	}
+	
 	@ParameterizedTest
 	@MethodSource("get_invalid_logins")
 	public void Login_Invalid_Login_Failed(String id, String username, String passwordHashed, String password) {
@@ -78,7 +106,7 @@ class LoginTests {
 		user.setUsername(username);
 		user.setPasswordHash(passwordHashed);
 		user.setId(id);
-		
+		user.addUserRole(new ApplicationUserRole(Constants.ADMINISTRATOR_ROLE));
 		
 		Mockito
 			.when(loginRepository.getUserByUsername(username))
@@ -103,7 +131,8 @@ class LoginTests {
 		var dateNow = Instant.now();
 		user.setUsername(username);
 		user.setPasswordHash(passwordHashed);
-		user.setId(id);
+		user.setId(id);		
+		user.addUserRole(new ApplicationUserRole(Constants.ADMINISTRATOR_ROLE));
 		
 		Mockito
 			.when(loginRepository.getUserByUsername(username))

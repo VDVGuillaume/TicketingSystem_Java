@@ -11,6 +11,7 @@ import repository.TicketDao;
 import repository.UserDao;
 import repository.UserDaoJpa;
 import repository.UserRepository;
+import validators.RoleValidator;
 
 public class LoginController {
 
@@ -34,6 +35,10 @@ public class LoginController {
 		try
 		{
 			user = userRepo.getUserByUsername(username);
+			
+			if(user == null) {
+				throw new ValidationException(Constants.ERROR_LOGIN_USER_NOT_FOUND);
+			}
 		}
 		catch (Exception ex)
 		{
@@ -55,8 +60,15 @@ public class LoginController {
 			throw new ValidationException(Constants.ERROR_LOGIN_FAILED);
 		}
 		
+		//validate user roles
+		if(!RoleValidator.ValidateRolesAllowedInApplication(user)) {
+			throw new ValidationException(Constants.ERROR_LOGIN_NO_VALID_ROLE);
+		}
+		
 		// login succeeded!
 		user.setAccessFailedCount(0);
 		userRepo.updateAccessFailedCount(user);
 	}
+	
+	
 }
