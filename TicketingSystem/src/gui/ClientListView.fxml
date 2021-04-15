@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="100.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="880.0">    
+        <TableView fx:id="clientTableView" minHeight="-Infinity"  minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0">
+	        <columns>
+	          <TableColumn fx:id="id" maxWidth="-Infinity" minWidth="55.0"  sortable="true" text="Id" />
+	          <TableColumn fx:id="name" maxWidth="-Infinity" minWidth="180.0"  sortable="true" text="Naam" />
+	          <TableColumn fx:id="dateCreated" maxWidth="-Infinity" minWidth="180.0"  sortable="true" text="Datum gecreeërd" />  
+	          <TableColumn fx:id="address" maxWidth="-Infinity" minWidth="280.0" prefWidth="280.0" sortable="true" text="Adres" />  
+	        </columns>
+      	</TableView>
+      </GridPane>
+   </children>
+</fx:root>

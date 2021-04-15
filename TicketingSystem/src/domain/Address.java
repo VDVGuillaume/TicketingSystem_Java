@@ -33,5 +33,12 @@ public class Address implements Serializable {
 	public Address() {
 		
 	}
+
+	@Override
+	public String toString() {
+		return String.format("%s %d, %d %s, %s", this.street,this.housenumber,this.postalcode,this.city,this.country);
+	}
+	
+	
 	
 }

@@ -24,7 +24,7 @@ public class DashboardViewController extends BaseScreenController {
 	}
 	
 	public void openClients() {
-		//this.mainViewController.openClients();
+		this.mainViewController.openClientList();
 	}
 	
 	public void openSystemUsers() {

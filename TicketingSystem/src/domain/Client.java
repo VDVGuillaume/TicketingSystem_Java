@@ -39,16 +39,16 @@ public class Client implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
-	public String name;
+	String name;
 	@OneToOne(cascade = CascadeType.ALL)
-	public Address address;
+	Address address;
 	@OneToMany(cascade = CascadeType.ALL)
 	@ElementCollection
 	ArrayList<String> telephoneNumbers;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="clientID")
 	ArrayList<Contact> contacts;
-	public Date dateCreated;
+	Date dateCreated;
 	
 	public Client(String name,Address address) {
 		
@@ -76,6 +76,10 @@ public class Client implements Serializable {
 		return name;
 	}
 
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

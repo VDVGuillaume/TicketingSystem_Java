@@ -17,6 +17,7 @@ public class MainViewController extends BaseScreenController {
 	private LoginViewController loginViewController;
 	private DashboardViewController dashboardViewController;
 	private UsersViewController usersViewController;
+	private ClientListViewController clientListViewController;
 	
 	public MainViewController() {
 		super("mainView.fxml");
@@ -63,6 +64,19 @@ public class MainViewController extends BaseScreenController {
 		}
 		
 		this.setCenter(usersViewController);
+	}
+	
+	public void openClientList() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Klanten");
+		
+		if (clientListViewController == null)
+		{
+			clientListViewController = new ClientListViewController(this);
+		}
+		
+		this.setCenter(clientListViewController);
 	}
 
 	@Override
