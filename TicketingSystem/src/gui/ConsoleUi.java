@@ -32,12 +32,12 @@ public class ConsoleUi {
     private void doStandardJob() {
     	
     	Client client = clientController.getClientById(4);
-    	System.out.println(client.name);
+    	System.out.println(client.getName());
     	client.setName("André");
     	clientController.updateClient(client);
     	
     	Client client1 = clientController.getClientById(4);
-    	System.out.println(client1.name);
+    	System.out.println(client1.getName());
     	
     }  
     
