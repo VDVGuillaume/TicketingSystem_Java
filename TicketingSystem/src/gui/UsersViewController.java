@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.controlsfx.control.table.TableFilter;
+import org.controlsfx.control.table.TableFilter.Builder;
 
 public class UsersViewController extends BaseScreenController {
 	@FXML
@@ -44,6 +46,8 @@ public class UsersViewController extends BaseScreenController {
 		tblColCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
 
 		loadData();
+		
+		TableFilter.forTableView(tblViewUsers).apply();
 	}
 	
 	@Override

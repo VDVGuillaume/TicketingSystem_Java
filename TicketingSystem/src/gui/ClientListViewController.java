@@ -3,6 +3,9 @@ package gui;
 
 
 import java.util.Date;
+
+import org.controlsfx.control.table.TableFilter;
+
 import controller.ClientController;
 import domain.Address;
 import domain.Client;
@@ -40,6 +43,7 @@ public class ClientListViewController extends BaseScreenController {
 		
 		configureTableView();
 		loadData();
+		TableFilter.forTableView(clientTableView).apply();
 
 	}
 	
