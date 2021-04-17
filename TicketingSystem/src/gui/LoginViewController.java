@@ -41,6 +41,30 @@ public class LoginViewController extends BaseScreenController {
 
 		this.mainViewController.openDashboard();
 	}
+	
+	public void login_Tech() {
+		this.txtUsername.setText("technician");
+		this.pwdPassword.setText("P@ssword1");
+		login();
+	}
+	
+	public void login_Tech2() {
+		this.txtUsername.setText("technician2");
+		this.pwdPassword.setText("P@ssword1");
+		login();
+	}
+	
+	public void login_SuppM() {
+		this.txtUsername.setText("supportmanager");
+		this.pwdPassword.setText("P@ssword1");
+		login();
+	}
+	
+	public void login_Cust() {
+		this.txtUsername.setText("customer");
+		this.pwdPassword.setText("P@ssword1");
+		login();
+	}
 
 	@Override
 	protected void loadData() {
