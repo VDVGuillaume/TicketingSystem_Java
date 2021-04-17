@@ -16,7 +16,7 @@ public class MainViewController extends BaseScreenController {
 
 	private LoginViewController loginViewController;
 	private DashboardViewController dashboardViewController;
-	private UsersViewController usersViewController;
+	private UserListViewController usersViewController;
 	private ClientListViewController clientListViewController;
 	
 	public MainViewController() {
@@ -60,7 +60,7 @@ public class MainViewController extends BaseScreenController {
 		
 		if (usersViewController == null)
 		{
-			usersViewController = new UsersViewController(this);
+			usersViewController = new UserListViewController(this);
 		}
 		
 		this.setCenter(usersViewController);

@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
 
-public class UsersViewController extends BaseScreenController {
+public class UserListViewController extends BaseScreenController {
 	@FXML
 	public TableView<ApplicationUser> tblViewUsers;
 	
@@ -32,8 +32,8 @@ public class UsersViewController extends BaseScreenController {
 	private MainViewController mainViewController;
 	private UserController userController;
 	
-	public UsersViewController(MainViewController mainViewController) {
-		super("UsersView.fxml");
+	public UserListViewController(MainViewController mainViewController) {
+		super("UserListView.fxml");
 		this.mainViewController = mainViewController;
 		this.userController = new UserController();
 		
