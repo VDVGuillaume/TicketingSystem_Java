@@ -1,0 +1,8 @@
+-- Step 0: Add location of jar.exe to PATH(environment variables)
+-- 	example:
+C:\Program Files\Java\jdk-15.0.1\bin
+-- Step 1: extract JAR 
+-- Step 2: make changes
+-- Step 3: create jar
+-- 	example:
+jar cf controlsfx-11.1.0-translated.jar impl META-INF org controlsfx.properties module-info.class
