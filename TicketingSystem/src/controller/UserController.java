@@ -20,7 +20,11 @@ public class UserController {
 		this(new UserRepository());
 	}
 	
-	public List<ApplicationUser> getAllUsers(){
+	public List<ApplicationUser> getAllUsers() {
 		return userRepo.getAll();
+	}
+	
+	public ApplicationUser getUserByUsername(String username) {
+		return userRepo.getUserByUsername(username);
 	}
 }

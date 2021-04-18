@@ -14,7 +14,7 @@
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0">
          <children>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="880.0" text="Gebruikersnaam" textFill="#004087">
+            <Label fx:id="lblUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="880.0" text="Gebruikersnaam" textFill="#004087">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
