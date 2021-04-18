@@ -55,7 +55,8 @@ public class ClientListViewController extends BaseScreenController {
 	}
 	
 	public void editClient(MouseEvent arg0) {
-		this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem());		
+		if(arg0.getClickCount() > 1)
+			this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem());		
 	}
 
     protected void configureTableView() {
