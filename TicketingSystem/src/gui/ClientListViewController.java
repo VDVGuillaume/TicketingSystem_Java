@@ -68,8 +68,8 @@ public class ClientListViewController extends BaseScreenController {
 
 	@Override
 	protected void loadData() {
-		// TODO Auto-generated method stub
-		
+		var clients = clientController.getClients();
+		clientTableView.getItems().clear();
+		clientTableView.getItems().addAll(clients);				
 	}
-		
 }
