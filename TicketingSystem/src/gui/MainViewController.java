@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import controller.LoginController;
+import domain.Client;
 import exceptions.ValidationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -103,6 +104,24 @@ public class MainViewController extends BaseScreenController {
 		}
 		
 		this.setCenter(userDetailController);
+	}
+	
+	public void openClientDetail() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Klant - Nieuw");
+		
+		var clientDetailController = new ClientDetailViewController(this, true);
+		this.setCenter(clientDetailController);
+	}
+	
+	public void openClientDetail(Client client) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Klant - " + client.getName());
+		
+		var clientDetailController = new ClientDetailViewController(this, true);
+		this.setCenter(clientDetailController);
 	}
 
 	public void hideMenu() {

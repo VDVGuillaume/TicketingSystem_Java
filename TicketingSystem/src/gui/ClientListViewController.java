@@ -12,10 +12,11 @@ import domain.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class ClientListViewController extends BaseScreenController {
 	
@@ -35,6 +36,8 @@ public class ClientListViewController extends BaseScreenController {
 	private TableColumn<Client,Integer> id;
 	@FXML 
 	private TableColumn<Client,Address> address;
+	@FXML
+	public Button btnCreateClient;
 	
 	public ClientListViewController( MainViewController mainViewController) {
 		super("ClientListView.fxml");
@@ -47,15 +50,14 @@ public class ClientListViewController extends BaseScreenController {
 
 	}
 	
-	@Override
-	protected void loadData() {
-		clientList = FXCollections.observableArrayList(clientController.getClients());
-		clientTableView.getItems().clear();
-		clientTableView.getItems().addAll(clientList);
+	public void createClient() {
+		this.mainViewController.openClientDetail();
+	}
+	
+	public void editClient(MouseEvent arg0) {
+		this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem());		
 	}
 
-	  
-    
     protected void configureTableView() {
     	
     	id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -63,5 +65,11 @@ public class ClientListViewController extends BaseScreenController {
     	dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
     	address.setCellValueFactory(new PropertyValueFactory<>("address"));
     }
+
+	@Override
+	protected void loadData() {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }
