@@ -57,4 +57,14 @@ public class UserDetailViewController extends BaseScreenController {
 		lblRole.setText(this.user.getRole());
 		lblCompany.setText(this.user.getCompany());
 	}
+	
+	public void reloadData(String username) {
+		this.username = username;
+		loadData();
+		fillData();
+	}
+	
+	public void returnToList() {
+		this.mainViewController.openUsers();
+	}
 }

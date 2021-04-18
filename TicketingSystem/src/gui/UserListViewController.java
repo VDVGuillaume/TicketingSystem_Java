@@ -3,6 +3,7 @@ package gui;
 import controller.UserController;
 import domain.ApplicationUser;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +29,9 @@ public class UserListViewController extends BaseScreenController {
 	@FXML
 	public TableColumn tblColCompany;
 	
+	@FXML
+	public Button btnUserDetails;
+	
 	
 	private MainViewController mainViewController;
 	private UserController userController;
@@ -48,6 +52,17 @@ public class UserListViewController extends BaseScreenController {
 		loadData();
 		
 		TableFilter.forTableView(tblViewUsers).apply();
+		
+		tblViewUsers.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+	    if (newSelection != null) {
+	    	if (tblViewUsers.getSelectionModel().getSelectedItem().getClass().getName() == "domain.ApplicationUser"
+	    			&& tblViewUsers.getSelectionModel().getSelectedItem().getUserName() != null) {
+	    		btnUserDetails.setDisable(false);
+	    	} else {
+	    		btnUserDetails.setDisable(true);
+	    	}
+	    }
+	});
 	}
 	
 	@Override
@@ -55,5 +70,9 @@ public class UserListViewController extends BaseScreenController {
 		var users = userController.getAllUsers();
 		tblViewUsers.getItems().clear();
 		tblViewUsers.getItems().addAll(users);
+	}
+	
+	public void openUserDetail() {
+		this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem().getUserName());
 	}
 }

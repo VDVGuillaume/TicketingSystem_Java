@@ -18,6 +18,7 @@ public class MainViewController extends BaseScreenController {
 	private LoginViewController loginViewController;
 	private DashboardViewController dashboardViewController;
 	private UserListViewController usersViewController;
+	private UserDetailViewController userDetailController;
 	private ClientListViewController clientListViewController;
 	
 	@FXML
@@ -87,6 +88,21 @@ public class MainViewController extends BaseScreenController {
 
 	public void openSystemUsers() {
 		//this.mainViewController.openSystemUsers();
+	}
+	
+	public void openUserDetail(String username) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Gebruiker - " + username);
+		
+		if (userDetailController == null)
+		{
+			userDetailController = new UserDetailViewController(this, username);
+		} else {
+			userDetailController.reloadData(username);
+		}
+		
+		this.setCenter(userDetailController);
 	}
 
 	public void hideMenu() {
