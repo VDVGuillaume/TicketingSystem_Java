@@ -19,17 +19,7 @@ public class DashboardViewController extends BaseScreenController {
 		this.mainViewController = mainViewController;
 	}
 	
-	public void openUsers() {
-		this.mainViewController.openUsers();
-	}
 	
-	public void openClients() {
-		this.mainViewController.openClientList();
-	}
-	
-	public void openSystemUsers() {
-		//this.mainViewController.openSystemUsers();
-	}
 
 	@Override
 	protected void loadData() {

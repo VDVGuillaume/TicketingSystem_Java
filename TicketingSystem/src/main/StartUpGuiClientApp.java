@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import repository.DataInitializer;
 
 public class StartUpGuiClientApp extends Application {
 	private Stage primaryStage;
@@ -30,6 +31,6 @@ public class StartUpGuiClientApp extends Application {
     }
 
     public static void main(String... args) {
-        Application.launch(StartUpGuiClientApp.class, args);
+        Application.launch(StartUpGuiClientApp.class, args);        
     }
 }

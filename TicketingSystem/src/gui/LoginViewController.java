@@ -26,6 +26,7 @@ public class LoginViewController extends BaseScreenController {
 		super("LoginView.fxml");
 		this.loginController = new LoginController();
 		this.mainViewController = mainViewController;
+		mainViewController.hideMenu();
 	}
 	
 	public void login() {
@@ -38,7 +39,8 @@ public class LoginViewController extends BaseScreenController {
 			lblValidation.setText(e.getMessage());
 			return;
 		}
-
+		
+		mainViewController.showMenu();
 		this.mainViewController.openDashboard();
 	}
 	
