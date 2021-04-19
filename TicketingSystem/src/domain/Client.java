@@ -41,13 +41,13 @@ public class Client implements Serializable {
 	int id;
 	String name;
 	@OneToOne(cascade = CascadeType.ALL)
-	Address address;
+	Address address = new Address();
 	@OneToMany(cascade = CascadeType.ALL)
 	@ElementCollection
-	ArrayList<String> telephoneNumbers;
+	ArrayList<String> telephoneNumbers = new ArrayList<String>();
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="clientID")
-	ArrayList<Contact> contacts;
+	ArrayList<Contact> contacts = new ArrayList<Contact>();
 	Date dateCreated;
 	
 	public Client(String name,Address address) {
@@ -96,6 +96,11 @@ public class Client implements Serializable {
 		this.address = address;
 	}
 	
+	public ArrayList<Contact> getContacts(){
+		return this.contacts;
+	}
 	
-	
+	public ArrayList<String> getTelephoneNumbers(){
+		return this.telephoneNumbers;
+	}
 }

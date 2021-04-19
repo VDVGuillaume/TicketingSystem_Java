@@ -39,6 +39,23 @@ public class Address implements Serializable {
 		return String.format("%s %d, %d %s, %s", this.street,this.housenumber,this.postalcode,this.city,this.country);
 	}
 	
+	public String getCountry() {
+		return this.country;
+	}
 	
+	public String getStreet() {
+		return this.street;
+	}
 	
+	public int getHouseNumber() {
+		return this.housenumber;
+	}
+	
+	public int getPostalCode() {
+		return this.postalcode;
+	}
+	
+	public String getCity() {
+		return this.city;
+	}	
 }

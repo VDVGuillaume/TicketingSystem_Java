@@ -24,5 +24,9 @@ public class Contact implements Serializable {
 	public Contact() {
 		
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.firstname + " - " + this.surname + " - " + this.email;
+	}
 }

@@ -111,7 +111,7 @@ public class MainViewController extends BaseScreenController {
 		
 		stage.setTitle("TicketingSystem - Klant - Nieuw");
 		
-		var clientDetailController = new ClientDetailViewController(this, true);
+		var clientDetailController = new ClientDetailViewController(this);
 		this.setCenter(clientDetailController);
 	}
 	
@@ -120,7 +120,7 @@ public class MainViewController extends BaseScreenController {
 		
 		stage.setTitle("TicketingSystem - Klant - " + client.getName());
 		
-		var clientDetailController = new ClientDetailViewController(this, true);
+		var clientDetailController = new ClientDetailViewController(this, client);
 		this.setCenter(clientDetailController);
 	}
 
