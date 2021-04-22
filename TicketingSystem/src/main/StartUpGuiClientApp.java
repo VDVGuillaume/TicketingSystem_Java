@@ -20,7 +20,7 @@ public class StartUpGuiClientApp extends Application {
 			Scene scene = new Scene(root);
 			
 			primaryStage.setTitle("TicketingSystem");
-			primaryStage.setResizable(false);
+			primaryStage.setResizable(true);
 			primaryStage.setScene(scene);
 			//Add icons in 2 sizes. JavaFX chooses correct size for different uses.
 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/favicon16x16.png")));
