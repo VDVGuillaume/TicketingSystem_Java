@@ -50,13 +50,16 @@ public class Client implements Serializable {
 	ArrayList<Contact> contacts = new ArrayList<Contact>();
 	Date dateCreated;
 	
-	public Client(String name,Address address) {
+	public Client(String name,String email,String firstname, String surname, String telephoneNumber,
+			String street,int housenumber, String city, String country,int postalcode) {
 		
 		setName(name);
-		setAddress(address);	
+		setAddress(new Address(street, housenumber,city,country,postalcode ));	
 		contacts = new ArrayList<Contact>();
 		telephoneNumbers = new ArrayList<String>();
-		dateCreated = new Date();
+		dateCreated = new Date();		
+		contacts.add(new Contact(email,firstname,surname));
+		telephoneNumbers.add(telephoneNumber);
 	}
 	
 	protected Client() {

@@ -21,28 +21,14 @@ public class ClientController {
 		clientRepo = new ClientDaoJpa();
 	}
 	
-	public void createClient(String street,int housenumber, String city, String country,
-			int postalcode,String name,String telephoneNumber,String email, String firstname, String surname) {
+	public void createClient(String name,String telephoneNumber,String email, 
+			String firstname, String surname,String street,int housenumber, String city, String country,int postalcode) {
 		
-		if(!emailCheck(email)) {
-			throw new ValidationException("Invalid mail");
-		}
-		
-		Address address = new Address(street, housenumber,city,country,postalcode );
-		Client client = new Client(name,address);
-		client.addPhoneNumber(telephoneNumber);
-		client.addContact(email,firstname,surname);
-		
+		Client client = new Client(name,email,firstname,surname, telephoneNumber, street, housenumber, city, country, postalcode);
 		clientRepo.createClient(client);
 	}
 	
-	public boolean emailCheck(String email) {
-		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-		 
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
-	}
+	
 	
 	public void updateClient(Client client) {
 		 clientRepo.updateClient(client);;
