@@ -29,8 +29,6 @@ public class MainViewController extends BaseScreenController {
 		super("mainView.fxml");
 	}
 	
-	
-	
 	public void openLogin() {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
