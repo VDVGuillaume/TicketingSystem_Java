@@ -54,6 +54,16 @@ public class UserRepository implements IUserRepository {
 		}	
 	}
 
+    @Override
+    public List<ApplicationUser> getAllCustomers(){
+    	return userDao.getAllCustomers();
+    }
+    
+    @Override
+    public List<ApplicationUser> getAllEmployees(){
+    	return userDao.getAllCustomers();
+    }
+
 	@Override
 	public List<ApplicationUser> getAll() {
 		return userDao.findAll();

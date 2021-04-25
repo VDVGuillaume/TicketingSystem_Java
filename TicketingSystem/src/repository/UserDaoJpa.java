@@ -4,6 +4,7 @@ import domain.ApplicationUser;
 import domain.Ticket;
 
 import java.time.Instant;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
@@ -26,5 +27,17 @@ public class UserDaoJpa extends GenericDaoJpa<ApplicationUser> implements UserDa
         } catch (NoResultException ex) {
             throw new EntityNotFoundException();
         } 
+    }
+    
+    @Override
+    public List<ApplicationUser> getAllCustomers(){
+    	return em.createNamedQuery("ApplicationUser.getCustomers", ApplicationUser.class)
+    			.getResultList();
+    }
+    
+    @Override
+    public List<ApplicationUser> getAllEmployees(){
+    	return em.createNamedQuery("ApplicationUser.getEmployees", ApplicationUser.class)
+    			.getResultList();
     }
 }

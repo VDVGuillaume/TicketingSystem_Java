@@ -24,6 +24,14 @@ public class UserController {
 		return userRepo.getAll();
 	}
 	
+	public List<ApplicationUser> getAllCustomers() {
+		return userRepo.getAllCustomers();
+	}
+	
+	public List<ApplicationUser> getAllEmployees() {
+		return userRepo.getAllEmployees();
+	}
+	
 	public ApplicationUser getUserByUsername(String username) {
 		return userRepo.getUserByUsername(username);
 	}

@@ -46,7 +46,6 @@ public class UserListViewController extends BaseScreenController {
 		tblColName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		tblColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tblColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-		tblColRole.setCellValueFactory(new PropertyValueFactory<>("role"));
 		tblColCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
 
 		loadData();
@@ -67,7 +66,7 @@ public class UserListViewController extends BaseScreenController {
 	
 	@Override
 	protected void loadData() {
-		var users = userController.getAllUsers();
+		var users = userController.getAllCustomers();
 		tblViewUsers.getItems().clear();
 		tblViewUsers.getItems().addAll(users);
 	}

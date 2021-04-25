@@ -11,4 +11,6 @@ public interface IUserRepository {
 	void createUserLoginAttempt(Instant date, String username, boolean succeeded);
 	void updateAccessFailedCount(ApplicationUser user);
 	List<ApplicationUser> getAll();
+	List<ApplicationUser> getAllCustomers();
+	List<ApplicationUser> getAllEmployees();
 }

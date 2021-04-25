@@ -13,6 +13,7 @@
     <class>domain.ApplicationUserRole</class>
     <class>domain.UserLoginAttempt</class>
     <class>domain.Client</class>
+    <class>domain.AspNetUserRoles</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1434;DatabaseName=TicketingSystem"/>
       <property name="javax.persistence.jdbc.user" value="TicketingSystem"></property>
