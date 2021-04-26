@@ -21,6 +21,7 @@ public class MainViewController extends BaseScreenController {
 	private UserListViewController usersViewController;
 	private UserDetailViewController userDetailController;
 	private ClientListViewController clientListViewController;
+	private SplitPaneViewController splitPaneViewController;
 	
 	@FXML
 	TilePane menu;
@@ -75,12 +76,20 @@ public class MainViewController extends BaseScreenController {
 		
 		stage.setTitle("TicketingSystem - Klanten");
 		
+		if (splitPaneViewController == null)
+		{
+			splitPaneViewController = new SplitPaneViewController(this);
+		}
+		
+		this.setCenter(splitPaneViewController);
+		/*
 		if (clientListViewController == null)
 		{
 			clientListViewController = new ClientListViewController(this);
 		}
 		
 		this.setCenter(clientListViewController);
+		*/
 	}
 
 	public void openSystemUsers() {
