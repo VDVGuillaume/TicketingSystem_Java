@@ -33,7 +33,6 @@ public class MainViewController extends BaseScreenController {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Log in");
-		stage.setHeight(600);
 		
 		if (loginViewController == null)
 		{
@@ -48,7 +47,6 @@ public class MainViewController extends BaseScreenController {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Dashboard");
-		stage.setHeight(900);
 		
 		if (dashboardViewController == null)
 		{
