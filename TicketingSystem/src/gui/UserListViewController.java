@@ -66,9 +66,9 @@ public class UserListViewController extends BaseScreenController {
 	
 	@Override
 	protected void loadData() {
-		var users = userController.getAllCustomers();
+		
 		tblViewUsers.getItems().clear();
-		tblViewUsers.getItems().addAll(users);
+		tblViewUsers.setItems(userController.getCustomers());
 	}
 	
 	public void openUserDetail() {

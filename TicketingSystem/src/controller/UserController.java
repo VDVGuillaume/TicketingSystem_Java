@@ -5,15 +5,24 @@ import java.util.List;
 import Helpers.PasswordHasher;
 import Providers.DateProvider;
 import domain.ApplicationUser;
+import domain.Client;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import repository.IUserRepository;
 import repository.UserRepository;
 
 public class UserController {
 	private IUserRepository userRepo;
-	
+	private ObservableList<ApplicationUser> customers;
+	private ObservableList<ApplicationUser> employees;
 	
 	public UserController(IUserRepository userRepo) {		
 		this.userRepo = userRepo;
+		customers = FXCollections.observableArrayList(
+				userRepo.getAllCustomers());
+		employees = FXCollections.observableArrayList(
+				userRepo.getAllEmployees());
+				
 	}	
 	
 	public UserController() {		
@@ -24,13 +33,14 @@ public class UserController {
 		return userRepo.getAll();
 	}
 	
-	public List<ApplicationUser> getAllCustomers() {
-		return userRepo.getAllCustomers();
+	public ObservableList<ApplicationUser> getCustomers() {
+	    return FXCollections.unmodifiableObservableList(customers);	
 	}
-	
-	public List<ApplicationUser> getAllEmployees() {
-		return userRepo.getAllEmployees();
+		
+	public ObservableList<ApplicationUser> getEmployees() {
+	    return FXCollections.unmodifiableObservableList(employees);	
 	}
+		
 	
 	public ApplicationUser getUserByUsername(String username) {
 		return userRepo.getUserByUsername(username);
