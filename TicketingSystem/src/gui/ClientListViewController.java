@@ -23,7 +23,7 @@ public class ClientListViewController extends BaseScreenController {
 	private MainViewController mainViewController;
 	private ClientController clientController;
 	
-	private ObservableList<Client> clientList;
+	
 
 	
 	@FXML
@@ -68,9 +68,8 @@ public class ClientListViewController extends BaseScreenController {
     }
 
 	@Override
-	protected void loadData() {
-		var clients = clientController.getClients();
+	protected void loadData() {		
 		clientTableView.getItems().clear();
-		clientTableView.getItems().addAll(clients);				
+		clientTableView.setItems(clientController.getClients());		
 	}
 }

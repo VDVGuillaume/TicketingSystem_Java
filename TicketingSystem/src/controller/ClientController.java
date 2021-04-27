@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 import domain.Address;
 import domain.Client;
 import exceptions.ValidationException;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import repository.ClientDao;
 import repository.ClientDaoJpa;
 import repository.TicketDao;
@@ -15,10 +18,13 @@ import repository.TicketDao;
 public class ClientController {
 	
 	private ClientDao clientRepo;
+	private ObservableList<Client> clients;
 	
 	
 	public ClientController() {
 		clientRepo = new ClientDaoJpa();
+		clients =FXCollections.observableArrayList(
+				clientRepo.getClients());
 	}
 	
 	public void createClient(String name,String telephoneNumber,String email, 
@@ -26,21 +32,28 @@ public class ClientController {
 		
 		Client client = new Client(name,email,firstname,surname, telephoneNumber, street, housenumber, city, country, postalcode);
 		clientRepo.createClient(client);
+		clients.add(client);
+		
 	}
 	
-	
+	public ObservableList<Client> getClients() {
+	    return FXCollections.unmodifiableObservableList(clients);	
+	}
+		
 	
 	public void updateClient(Client client) {
-		 clientRepo.updateClient(client);;
+		
+		clientRepo.updateClient(client);
 	}
 	
-	public List<Client> getClients(){
-		return clientRepo.getClients();		
-	}
 	
 	public Client getClientById(int id) {
 		return clientRepo.getClientById(id);
 	}
 	
+	public void addObserver(ListChangeListener<Client> listener){
+        clients.addListener(listener);
+	}
+    
 
 }
