@@ -18,15 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
-
 @Entity
 @NamedQueries({
 	
@@ -47,24 +38,26 @@ public class Client implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private final SimpleIntegerProperty id = new SimpleIntegerProperty();;
-	private final SimpleStringProperty name = new SimpleStringProperty();;
+	int id;
+	String name;
 	@OneToOne(cascade = CascadeType.ALL)
-	private final SimpleObjectProperty<Address> address = new SimpleObjectProperty<Address>();
+	Address address = new Address();
 	@OneToMany(cascade = CascadeType.ALL)
 	@ElementCollection
-	private final SimpleListProperty<String> telephoneNumbers = new SimpleListProperty<String>();
+	ArrayList<String> telephoneNumbers = new ArrayList<String>();
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="clientID")
-	private final SimpleListProperty<Contact> contacts = new SimpleListProperty<Contact>();
-	private final SimpleObjectProperty<Date> dateCreated = new SimpleObjectProperty<Date>();
+	ArrayList<Contact> contacts = new ArrayList<Contact>();
+	Date dateCreated;
 	
 	public Client(String name,String email,String firstname, String surname, String telephoneNumber,
 			String street,int housenumber, String city, String country,int postalcode) {
 		
 		setName(name);
-		setAddress(street, housenumber,city,country,postalcode);	
-		setDateCreated(new Date()); 		
+		setAddress(new Address(street, housenumber,city,country,postalcode ));	
+		contacts = new ArrayList<Contact>();
+		telephoneNumbers = new ArrayList<String>();
+		dateCreated = new Date();		
 		contacts.add(new Contact(email,firstname,surname));
 		telephoneNumbers.add(telephoneNumber);
 	}
@@ -73,78 +66,44 @@ public class Client implements Serializable {
 		
 	}
 	
-
+	public void addPhoneNumber(String telephoneNumber){
+		this.telephoneNumbers.add(telephoneNumber);
+	}
+	
+	public void addContact(String email, String firstname, String surname) {
+		contacts.add(new Contact(email,firstname,surname));
+		
+	}
 
 	public String getName() {
-		return name.get();
+		return name;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
 	}
 	
 	public void setName(String name) {
-		this.name.set(name);
-	}
-	
-	public StringProperty nameProperty() {
-		return name;		
+		this.name = name;
 	}
 	
 	public int getId() {
-		return id.get();
+		return id;
 	}
-			
-	public SimpleIntegerProperty idProperty() {
-		return id;		
-	}
-	
+
 	public Address getAddress() {
-		return address.get();
+		return address;
 	}
-	
-	public void setAddress(String street,int housenumber, String city, String country,int postalcode) {
-		this.address.set(new Address(street, housenumber,city,country,postalcode));
-	}
-	
-	public ObjectProperty<Address> addressProperty() {
-		return address;		
-	}
-	
-	public ObservableList<String> getTelephoneNumbers() {
-		return telephoneNumbers.get();
-	}
-	
-	public void addTelephoneNumbers(String number) {
-		this.telephoneNumbers.add(number);
-	}
-	
-	public ListProperty telephoneNumberProperty() {
-		return telephoneNumbers;		
-	}
-	
-	public ObservableList<Contact> getContacts() {
-		return contacts.get();
-	}
-	
-	public void addContact(String email,String firstname, String surname) {
-		this.contacts.add(new Contact(email,firstname,surname));
-	}
-	
-	public SimpleListProperty<Contact> contactProperty() {
-		return contacts;		
-	}
-	
-	public Date getDateCreated() {
-		return dateCreated.get();
-	}
-	
-	public void setDateCreated(Date date) {
-		this.dateCreated.set(date);
-	}
-	
-	public SimpleObjectProperty<Date> dateCreatedProperty() {
-		return dateCreated;		
-	}
-	
-	
 
-
-
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public ArrayList<Contact> getContacts(){
+		return this.contacts;
+	}
+	
+	public ArrayList<String> getTelephoneNumbers(){
+		return this.telephoneNumbers;
+	}
 }
