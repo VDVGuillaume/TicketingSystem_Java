@@ -16,18 +16,14 @@ public class SplitPaneViewController extends BaseScreenController {
 	private ClientListViewController clientListViewController;
 	private ClientDetailViewController clientDetailViewController;
 	
-	public SplitPaneViewController(MainViewController mainViewController) {
+	public < L > SplitPaneViewController(MainViewController mainViewController) {
 		super("SplitPane.fxml");
 		this.mainViewController = mainViewController;
 		
-		clientListViewController = new ClientListViewController(mainViewController);
-		this.setLeft(clientListViewController);
-		clientDetailViewController = new ClientDetailViewController(mainViewController);
-		this.setRight(clientDetailViewController);
+		//clientDetailViewController = new ClientDetailViewController(mainViewController);
+		//this.setRight(clientDetailViewController);
 		
-	}
-	
-	
+	}	
 
 	@Override
 	protected void loadData() {

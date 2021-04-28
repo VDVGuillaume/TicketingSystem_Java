@@ -76,10 +76,9 @@ public class MainViewController extends BaseScreenController {
 		
 		stage.setTitle("TicketingSystem - Klanten");
 		
-		if (splitPaneViewController == null)
-		{
-			splitPaneViewController = new SplitPaneViewController(this);
-		}
+		splitPaneViewController = new SplitPaneViewController(this);
+		clientListViewController = new ClientListViewController(this);
+		splitPaneViewController.setLeft(clientListViewController);
 		
 		this.setCenter(splitPaneViewController);
 		/*
@@ -117,7 +116,7 @@ public class MainViewController extends BaseScreenController {
 		stage.setTitle("TicketingSystem - Klant - Nieuw");
 		
 		var clientDetailController = new ClientDetailViewController(this);
-		this.setCenter(clientDetailController);
+		splitPaneViewController.setRight(clientDetailController);
 	}
 	
 	public void openClientDetail(Client client) {
@@ -126,7 +125,7 @@ public class MainViewController extends BaseScreenController {
 		stage.setTitle("TicketingSystem - Klant - " + client.getName());
 		
 		var clientDetailController = new ClientDetailViewController(this, client);
-		this.setCenter(clientDetailController);
+		splitPaneViewController.setRight(clientDetailController);
 	}
 
 	public void hideMenu() {
