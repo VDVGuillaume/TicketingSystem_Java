@@ -59,13 +59,12 @@ public class ClientListViewController extends BaseScreenController {
 			this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem());		
 	}
 
-    protected void configureTableView() {
-    	
-    	id.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	name.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
-    	address.setCellValueFactory(new PropertyValueFactory<>("address"));
-    }
+  protected void configureTableView() {
+  	id.setCellValueFactory(new PropertyValueFactory<>("id"));
+  	name.setCellValueFactory(new PropertyValueFactory<>("name"));
+  	dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
+  	address.setCellValueFactory(new PropertyValueFactory<>("address"));
+  }
 
 	@Override
 	protected void loadData() {		

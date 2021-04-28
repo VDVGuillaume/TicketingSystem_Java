@@ -14,30 +14,31 @@ import org.controlsfx.control.table.TableFilter.Builder;
 public class UserDetailViewController extends BaseScreenController {
 	
 	@FXML
-	private Label lblUsername;
+	private TextField txtUsername;
 	@FXML
-	private Label lblLastName;
+	private TextField txtLastName;
 	@FXML
-	private Label lblFirstName;
+	private TextField txtFirstName;
 	@FXML
-	private Label lblEmail;
+	private TextField txtEmail;
 	@FXML
-	private Label lblStatus;
+	private TextField txtStatus;
 	@FXML
-	private Label lblRole;
+	private TextField txtRole;
 	@FXML
-	private Label lblCompany;
+	private TextField txtCompany;
 	
 	private MainViewController mainViewController;
 	private UserController userController;
 	private String username;
 	private ApplicationUser user;
 	
-	public UserDetailViewController(MainViewController mainViewController, String username) {
+	public UserDetailViewController(MainViewController mainViewController, ApplicationUser user) {
 		super("UserDetailView.fxml");
 		this.mainViewController = mainViewController;
 		this.userController = new UserController();
-		this.username = username;
+		this.user = user;
+		this.username = user.getUserName();
 		
 		loadData();
 		fillData();
@@ -45,23 +46,16 @@ public class UserDetailViewController extends BaseScreenController {
 	
 	@Override
 	protected void loadData() {
-		this.user = userController.getUserByUsername(this.username);
 	}
 	
 	private void fillData() {
-		lblUsername.setText(this.user.getUserName());
-		lblLastName.setText(this.user.getLastName());
-		lblFirstName.setText(this.user.getFirstName());
-		lblEmail.setText(this.user.getEmail());
-		lblStatus.setText(this.user.getStatus());
-		lblRole.setText(this.user.getRole());
-		lblCompany.setText(this.user.getCompany());
-	}
-	
-	public void reloadData(String username) {
-		this.username = username;
-		loadData();
-		fillData();
+		txtUsername.setText(this.user.getUserName());
+		txtLastName.setText(this.user.getLastName());
+		txtFirstName.setText(this.user.getFirstName());
+		txtEmail.setText(this.user.getEmail());
+		txtStatus.setText(this.user.getStatus());
+		txtRole.setText(this.user.getRole());
+		txtCompany.setText(this.user.getCompany());
 	}
 	
 	public void returnToList() {

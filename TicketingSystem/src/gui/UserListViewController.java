@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+
 import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
 
@@ -66,12 +68,16 @@ public class UserListViewController extends BaseScreenController {
 	
 	@Override
 	protected void loadData() {
-		
 		tblViewUsers.getItems().clear();
 		tblViewUsers.setItems(userController.getCustomers());
 	}
 	
+	public void editClient(MouseEvent arg0) {
+		if(arg0.getClickCount() > 1)
+			this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem());		
+	}
+	
 	public void openUserDetail() {
-		this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem().getUserName());
+		this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem());
 	}
 }

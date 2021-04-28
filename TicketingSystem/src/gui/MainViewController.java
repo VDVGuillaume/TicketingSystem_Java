@@ -2,6 +2,7 @@ package gui;
 
 import controller.DomainController;
 import controller.LoginController;
+import domain.ApplicationUser;
 import domain.Client;
 import exceptions.ValidationException;
 import javafx.fxml.FXML;
@@ -63,12 +64,11 @@ public class MainViewController extends BaseScreenController {
 		
 		stage.setTitle("TicketingSystem - Gebruikers");
 		
-		if (usersViewController == null)
-		{
-			usersViewController = new UserListViewController(this);
-		}
+		splitPaneViewController = new SplitPaneViewController(this);
+		usersViewController = new UserListViewController(this);
 		
-		this.setCenter(usersViewController);
+		splitPaneViewController.setLeft(usersViewController);
+		this.setCenter(splitPaneViewController);
 	}
 	
 	public void openClients() {
@@ -78,42 +78,28 @@ public class MainViewController extends BaseScreenController {
 		
 		splitPaneViewController = new SplitPaneViewController(this);
 		clientListViewController = new ClientListViewController(this);
+		
 		splitPaneViewController.setLeft(clientListViewController);
-		
 		this.setCenter(splitPaneViewController);
-		/*
-		if (clientListViewController == null)
-		{
-			clientListViewController = new ClientListViewController(this);
-		}
-		
-		this.setCenter(clientListViewController);
-		*/
 	}
 
 	public void openSystemUsers() {
 		//this.mainViewController.openSystemUsers();
 	}
 	
-	public void openUserDetail(String username) {
+	public void openUserDetail(ApplicationUser user) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Gebruiker - " + username);
+		stage.setTitle("TicketingSystem - Gebruikers - " + user.getUserName());
 		
-		if (userDetailController == null)
-		{
-			userDetailController = new UserDetailViewController(this, username);
-		} else {
-			userDetailController.reloadData(username);
-		}
-		
-		this.setCenter(userDetailController);
+		userDetailController = new UserDetailViewController(this, user);
+		splitPaneViewController.setRight(userDetailController);
 	}
 	
 	public void openClientDetail() {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Klant - Nieuw");
+		stage.setTitle("TicketingSystem - Klanten - Nieuw");
 		
 		var clientDetailController = new ClientDetailViewController(this);
 		splitPaneViewController.setRight(clientDetailController);
@@ -122,7 +108,7 @@ public class MainViewController extends BaseScreenController {
 	public void openClientDetail(Client client) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Klant - " + client.getName());
+		stage.setTitle("TicketingSystem - Klanten - " + client.getName());
 		
 		var clientDetailController = new ClientDetailViewController(this, client);
 		splitPaneViewController.setRight(clientDetailController);
