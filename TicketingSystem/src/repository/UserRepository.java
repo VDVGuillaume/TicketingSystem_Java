@@ -1,6 +1,8 @@
 package repository;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domain.ApplicationUser;
@@ -56,12 +58,33 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public List<ApplicationUser> getAllCustomers(){
-    	return userDao.getAllCustomers();
+    	var users = getAll();
+    	List<ApplicationUser> customers = new ArrayList<ApplicationUser>();
+    	
+    	for(var user : users) {
+			if(user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.CUSTOMER_ROLE))) {
+				customers.add(user);
+			}
+		}
+    	
+    	return customers;
     }
-    
+
     @Override
     public List<ApplicationUser> getAllEmployees(){
-    	return userDao.getAllCustomers();
+    	var users = getAll();
+    	List<ApplicationUser> employees = new ArrayList<ApplicationUser>();
+    	
+    	for(var user : users) {			
+			if(
+					user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.ADMINISTRATOR_ROLE))
+				|| 	user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.SUPPORTMANAGER_ROLE))
+				|| 	user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.TECHNICIAN_ROLE))
+				) {
+			employees.add(user);
+			}	
+    	}
+    	return employees;
     }
 
 	@Override

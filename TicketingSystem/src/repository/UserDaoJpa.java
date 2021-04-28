@@ -28,16 +28,4 @@ public class UserDaoJpa extends GenericDaoJpa<ApplicationUser> implements UserDa
             throw new EntityNotFoundException();
         } 
     }
-    
-    @Override
-    public List<ApplicationUser> getAllCustomers(){
-    	return em.createNamedQuery("ApplicationUser.getCustomers", ApplicationUser.class)
-    			.getResultList();
-    }
-    
-    @Override
-    public List<ApplicationUser> getAllEmployees(){
-    	return em.createNamedQuery("ApplicationUser.getEmployees", ApplicationUser.class)
-    			.getResultList();
-    }
 }

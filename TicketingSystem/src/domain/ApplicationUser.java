@@ -27,22 +27,6 @@ import javax.persistence.JoinColumn;
 	@NamedQuery(
 		    name="ApplicationUser.findUserByUserName",
 		    query="SELECT u FROM ApplicationUser u WHERE u.userName = :userName"
-		),
-	
-	@NamedQuery(
-		    name="ApplicationUser.getCustomers",
-		    query="SELECT DISTINCT u FROM ApplicationUser u"
-		    		+ " INNER JOIN AspNetUserRoles ur_link on ur_link.userId = u.id"
-		    		+ " Inner join ApplicationUserRole r on r.id = ur_link.roleId"
-		    		+ " WHERE r.name = 'CUSTOMER'"
-		),
-	
-	@NamedQuery(
-		    name="ApplicationUser.getEmployees",
-		    query="SELECT DISTINCT u FROM ApplicationUser u"
-		    		+ " INNER JOIN AspNetUserRoles ur_link on ur_link.userId = u.id"
-		    		+ " INNER JOIN ApplicationUserRole r on r.id = ur_link.roleId"
-		    		+ " WHERE r.name in ('SUPPORTMANAGER', 'TECHNICIAN')"
 		)
 })
 @Table(name ="AspNetUsers")
