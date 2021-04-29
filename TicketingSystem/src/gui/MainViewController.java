@@ -101,6 +101,15 @@ public class MainViewController extends BaseScreenController {
 		//this.mainViewController.openSystemUsers();
 	}
 	
+	public void openUserDetail() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Gebruikers - Nieuw");
+		
+		userDetailController = new UserDetailViewController(this);
+		splitPaneViewController.setRight(userDetailController);
+	}
+	
 	public void openUserDetail(ApplicationUser user) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		

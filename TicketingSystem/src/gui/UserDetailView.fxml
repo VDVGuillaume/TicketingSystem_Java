@@ -95,7 +95,7 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </GridPane>
-            <Button maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #004087;" text="Wijzigen" textFill="WHITE">
+            <Button fx:id="btnSubmit" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submit" prefWidth="100.0" style="-fx-background-color: #004087;" text="Wijzigen" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

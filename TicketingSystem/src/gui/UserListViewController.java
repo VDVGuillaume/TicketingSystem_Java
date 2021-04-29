@@ -32,7 +32,7 @@ public class UserListViewController extends BaseScreenController {
 	public TableColumn tblColCompany;
 	
 	@FXML
-	public Button btnUserDetails;
+	public Button btnCreateUser;
 	
 	
 	private MainViewController mainViewController;
@@ -53,17 +53,6 @@ public class UserListViewController extends BaseScreenController {
 		loadData();
 		
 		TableFilter.forTableView(tblViewUsers).apply();
-		
-		tblViewUsers.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-	    if (newSelection != null) {
-	    	if (tblViewUsers.getSelectionModel().getSelectedItem().getClass().getName() == "domain.ApplicationUser"
-	    			&& tblViewUsers.getSelectionModel().getSelectedItem().getUserName() != null) {
-	    		btnUserDetails.setDisable(false);
-	    	} else {
-	    		btnUserDetails.setDisable(true);
-	    	}
-	    }
-	});
 	}
 	
 	@Override
@@ -75,6 +64,10 @@ public class UserListViewController extends BaseScreenController {
 	public void editClient(MouseEvent arg0) {
 		if(arg0.getClickCount() > 1)
 			this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem());		
+	}
+	
+	public void createUser() {
+		this.mainViewController.openUserDetail();
 	}
 	
 	public void openUserDetail() {
