@@ -1,7 +1,10 @@
 package controller;
 
+import domain.ApplicationUser;
 import domain.Client;
+import domain.Contract;
 import domain.Ticket;
+import domain.TicketType;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -20,8 +23,11 @@ public class TicketController {
 				
 	}
 
-	public void createTicket() {
-		
+	public void createTicket(String title, String description, TicketType type, Client client, 
+			Contract contract, ApplicationUser assignedEngineer) {
+		Ticket ticket = new Ticket(title,description,type,client,contract,assignedEngineer);
+		ticketRepo.createTicket(ticket);
+		tickets.add(ticket);
 	}
 	
 	public ObservableList<Ticket> getTickets() {

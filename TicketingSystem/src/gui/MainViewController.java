@@ -4,6 +4,7 @@ import controller.DomainController;
 import controller.LoginController;
 import domain.ApplicationUser;
 import domain.Client;
+import domain.Ticket;
 import exceptions.ValidationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -22,6 +23,7 @@ public class MainViewController extends BaseScreenController {
 	private UserListViewController usersViewController;
 	private UserDetailViewController userDetailController;
 	private ClientListViewController clientListViewController;
+	private TicketListViewController ticketListViewController;
 	private SplitPaneViewController splitPaneViewController;
 	
 	@FXML
@@ -82,6 +84,18 @@ public class MainViewController extends BaseScreenController {
 		splitPaneViewController.setLeft(clientListViewController);
 		this.setCenter(splitPaneViewController);
 	}
+	
+	public void openTickets() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Tickets");
+		
+		splitPaneViewController = new SplitPaneViewController(this);
+		ticketListViewController = new TicketListViewController(this);
+		
+		splitPaneViewController.setLeft(ticketListViewController);
+		this.setCenter(splitPaneViewController);
+	}
 
 	public void openSystemUsers() {
 		//this.mainViewController.openSystemUsers();
@@ -114,6 +128,23 @@ public class MainViewController extends BaseScreenController {
 		splitPaneViewController.setRight(clientDetailController);
 	}
 
+	public void openTicketDetail() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Tickets - Nieuw");
+		
+		var ticketDetailController = new TicketDetailViewController(this);
+		splitPaneViewController.setRight(ticketDetailController);
+	}
+	
+	public void openTicketDetail(Ticket ticket) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Tickets - Nieuw");
+		
+		var ticketDetailController = new TicketDetailViewController(this,ticket);
+		splitPaneViewController.setRight(ticketDetailController);
+	}
 	public void hideMenu() {
 		menu.setVisible(false);
 	}

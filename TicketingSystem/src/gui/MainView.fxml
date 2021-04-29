@@ -62,6 +62,11 @@
                         <Font size="18.0" />
                      </font>
                   </Hyperlink>
+                  <Hyperlink fx:id="urlTickets" onAction="#openTickets" text="Tickets">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Hyperlink>
                </children>
        </TilePane>
    </VBox>
