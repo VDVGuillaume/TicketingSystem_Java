@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import domain.Address;
 import domain.Client;
+import domain.Contact;
 import exceptions.ValidationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -27,25 +28,19 @@ public class ClientController {
 				clientRepo.getClients());
 	}
 	
-	public void createClient(String name,String telephoneNumber,String email, 
-			String firstname, String surname,String street,int housenumber, String city, String country,int postalcode) {
-		
-		Client client = new Client(name,email,firstname,surname, telephoneNumber, street, housenumber, city, country, postalcode);
+	public void createClient(Client client) {
 		clientRepo.createClient(client);
 		clients.add(client);
-		
 	}
 	
 	public ObservableList<Client> getClients() {
 	    return FXCollections.unmodifiableObservableList(clients);	
 	}
 		
-	
 	public void updateClient(Client client) {
 		
 		clientRepo.updateClient(client);
 	}
-	
 	
 	public Client getClientById(int id) {
 		return clientRepo.getClientById(id);
@@ -54,6 +49,4 @@ public class ClientController {
 	public void addObserver(ListChangeListener<Client> listener){
         clients.addListener(listener);
 	}
-    
-
 }

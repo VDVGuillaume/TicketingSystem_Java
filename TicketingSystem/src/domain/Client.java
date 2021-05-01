@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,22 +45,21 @@ public class Client implements Serializable {
 	Address address = new Address();
 	@OneToMany(cascade = CascadeType.ALL)
 	@ElementCollection
-	ArrayList<String> telephoneNumbers = new ArrayList<String>();
+	List<String> telephoneNumbers = new ArrayList<String>();
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="clientID")
-	ArrayList<Contact> contacts = new ArrayList<Contact>();
+	List<Contact> contacts = new ArrayList<Contact>();
 	Date dateCreated;
 	
-	public Client(String name,String email,String firstname, String surname, String telephoneNumber,
-			String street,int housenumber, String city, String country,int postalcode) {
+	public Client(String name,
+			String street,int housenumber, String city, String country,int postalcode, List<String> telephoneNumbers, List<Contact> contacts) {
 		
 		setName(name);
 		setAddress(new Address(street, housenumber,city,country,postalcode ));	
 		contacts = new ArrayList<Contact>();
-		telephoneNumbers = new ArrayList<String>();
 		dateCreated = new Date();		
-		contacts.add(new Contact(email,firstname,surname));
-		telephoneNumbers.add(telephoneNumber);
+		this.telephoneNumbers = telephoneNumbers;
+		this.contacts = contacts;
 	}
 	
 	protected Client() {
@@ -99,11 +99,11 @@ public class Client implements Serializable {
 		this.address = address;
 	}
 	
-	public ArrayList<Contact> getContacts(){
+	public List<Contact> getContacts(){
 		return this.contacts;
 	}
 	
-	public ArrayList<String> getTelephoneNumbers(){
+	public List<String> getTelephoneNumbers(){
 		return this.telephoneNumbers;
 	}
 }

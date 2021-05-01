@@ -34,7 +34,7 @@ public class Contact implements Serializable {
 	}
 	
 	
-	public boolean emailCheck(String email) {
+	public static boolean emailCheck(String email) {
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 		 
 		Pattern pattern = Pattern.compile(regex);
