@@ -106,4 +106,12 @@ public class Client implements Serializable {
 	public List<String> getTelephoneNumbers(){
 		return this.telephoneNumbers;
 	}
+	
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
+	
+	public void setTelephoneNumbers(List<String> telephoneNumbers) {
+		this.telephoneNumbers = telephoneNumbers;
+	}
 }

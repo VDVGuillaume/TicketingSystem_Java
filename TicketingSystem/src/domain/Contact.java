@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import exceptions.ValidationException;
@@ -17,6 +18,12 @@ public class Contact implements Serializable {
 	String email;
 	String firstname;
 	String surname;
+	
+	@ManyToOne
+	@JoinColumn(name="clientId")
+	Client client;
+	
+	
 	
 	public Contact(String email, String firstname, String surname) {
 		

@@ -58,4 +58,24 @@ public class Address implements Serializable {
 	public String getCity() {
 		return this.city;
 	}	
+	
+	public void setStreet(String street) {
+		this.street = street;	
+	}
+	
+	public void setHouseNumber(int housenumber) {
+		this.housenumber = housenumber;
+	}
+	
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
+	public void setPostalCode(int postalcode) {
+		this.postalcode = postalcode;
+	}
 }

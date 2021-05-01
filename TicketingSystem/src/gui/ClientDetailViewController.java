@@ -28,6 +28,7 @@ import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
 
 import Constants.Constants;
+import Helpers.IntParser;
 
 public class ClientDetailViewController extends BaseScreenController {
 	
@@ -45,7 +46,7 @@ public class ClientDetailViewController extends BaseScreenController {
 	private TextField txtStreetNumber;
 	
 	@FXML
-	private ListView lstTelPhone;
+	private ListView<String> lstTelPhone;
 	@FXML
 	private Button btnTelPhoneRemove;
 	@FXML
@@ -122,6 +123,65 @@ public class ClientDetailViewController extends BaseScreenController {
 		    }
 		});
 		
+		txtCity.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    	
+		    }
+		});
+		
+		txtCountry.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtName.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtPostalCode.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	if(IntParser.parseIntOrNull(newValue) == null) {
+		    		newValue = oldValue;
+		    		return;
+		    	}
+		    	
+		    	validate();
+		    }
+		});
+		
+		txtStreet.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtStreetNumber.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	if(IntParser.parseIntOrNull(newValue) == null) {
+		    		newValue = oldValue;
+		    		return;
+		    	}
+		    		
+		    	validate();
+		    }
+		});
+		
 		/* How to set display value in ListView:
 		lstContact.setCellFactory(param -> new ListCell<Contact>() {
 		    @Override
@@ -191,6 +251,10 @@ public class ClientDetailViewController extends BaseScreenController {
 			txtStreetNumber.setDisable(true);
 			lstContact.setDisable(true);
 			lstTelPhone.setDisable(true);
+			txtContactEmail.setDisable(true);
+			txtContactFirstName.setDisable(true);
+			txtContactName.setDisable(true);
+			txtTelPhone.setDisable(true);
 		}else {
 			// enable controls
 			txtName.setDisable(false);
@@ -201,6 +265,10 @@ public class ClientDetailViewController extends BaseScreenController {
 			txtStreetNumber.setDisable(false);
 			lstContact.setDisable(false);
 			lstTelPhone.setDisable(false);
+			txtContactEmail.setDisable(false);
+			txtContactFirstName.setDisable(false);
+			txtContactName.setDisable(false);
+			txtTelPhone.setDisable(false);
 		}
 	}
 	
@@ -218,10 +286,11 @@ public class ClientDetailViewController extends BaseScreenController {
 			return;
 		}else {
 			if(validate()) {
+				List<String> telephoneNumbers = lstTelPhone.getItems();
+				List<Contact> contacts = lstContact.getItems();
+				
 				if(state == WindowState.CREATE) {
 					// create client
-					List<String> telephoneNumbers = lstTelPhone.getItems();
-					List<Contact> contacts = lstContact.getItems();
 					this.client = new Client(txtName.getText(), txtStreet.getText(), Integer.parseInt(txtStreetNumber.getText()), txtCity.getText(), txtCountry.getText(), Integer.parseInt(txtPostalCode.getText()), telephoneNumbers, contacts);
 					
 					clientController.createClient(
@@ -230,6 +299,13 @@ public class ClientDetailViewController extends BaseScreenController {
 				}else if(state == WindowState.UPDATE) {
 					// update client
 					client.setName(txtName.getText());
+					client.getAddress().setCity(txtCity.getText());
+					client.getAddress().setCountry(txtCountry.getText());
+					client.getAddress().setHouseNumber(Integer.parseInt(txtStreetNumber.getText()));
+					client.getAddress().setPostalCode(Integer.parseInt(txtPostalCode.getText()));
+					client.getAddress().setStreet(txtStreet.getText());
+					client.setContacts(contacts);
+					client.setTelephoneNumbers(telephoneNumbers);
 					
 					clientController.updateClient(client);
 				}
@@ -250,8 +326,26 @@ public class ClientDetailViewController extends BaseScreenController {
 	}
 	
 	private boolean validate() {
-		// TODO
-		return true;
+		if(state == WindowState.DETAIL) {
+			btnSubmit.setDisable(false);
+			return false;
+		}
+		
+		
+		boolean disableButton =
+				txtCity.getText().isEmpty() ||
+				txtCountry.getText().isEmpty() ||
+				txtName.getText().isEmpty() ||
+				txtPostalCode.getText().isEmpty() ||
+				txtStreet.getText().isEmpty() ||
+				txtStreetNumber.getText().isEmpty() ||
+				lstContact.getItems().size() == 0 ||
+				lstTelPhone.getItems().size() == 0
+				;
+		
+		btnSubmit.setDisable(disableButton);
+		
+		return !disableButton;
 	}
 	
 	public void setAddTelPhoneDisabled() {
@@ -311,6 +405,7 @@ public class ClientDetailViewController extends BaseScreenController {
 		
 		lstTelPhone.getItems().remove(item);
 		lstTelPhoneClicked();
+		validate();
 	}
 	
 	@FXML
@@ -323,6 +418,7 @@ public class ClientDetailViewController extends BaseScreenController {
 		lstTelPhone.getItems().add(txtTelPhone.getText());
 		txtTelPhone.setText("");
 		setAddTelPhoneDisabled();
+		validate();
 	}
 	
 	@FXML
@@ -334,7 +430,9 @@ public class ClientDetailViewController extends BaseScreenController {
 		}
 		
 		lstContact.getItems().remove(item);
-		lstContactClicked();
+		lstContactClicked();		
+		validate();
+
 	}
 	
 	@FXML
@@ -347,5 +445,6 @@ public class ClientDetailViewController extends BaseScreenController {
 		txtContactFirstName.setText("");
 		txtContactName.setText("");
 		setAddContactDisabled();
+		validate();
 	}
 }
