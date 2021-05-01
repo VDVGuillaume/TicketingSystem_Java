@@ -77,9 +77,11 @@ public class UserRepository implements IUserRepository {
     	
     	for(var user : users) {			
 			if(
-					user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.ADMINISTRATOR_ROLE))
-				|| 	user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.SUPPORTMANAGER_ROLE))
-				|| 	user.getUserRoles().stream().anyMatch(item -> item.getName().equals(Constants.Constants.TECHNICIAN_ROLE))
+					user.getUserRoles().stream().anyMatch(item -> 
+						item.getName().equals(Constants.Constants.ADMINISTRATOR_ROLE) || 
+						item.getName().equals(Constants.Constants.SUPPORTMANAGER_ROLE) ||
+						item.getName().equals(Constants.Constants.TECHNICIAN_ROLE)
+						)
 				) {
 			employees.add(user);
 			}	
