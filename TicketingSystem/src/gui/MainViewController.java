@@ -2,10 +2,12 @@ package gui;
 
 import controller.DomainController;
 import controller.LoginController;
+import controller.UserController;
 import domain.ApplicationUser;
 import domain.Client;
 import domain.Ticket;
 import exceptions.ValidationException;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -25,12 +27,14 @@ public class MainViewController extends BaseScreenController {
 	private ClientListViewController clientListViewController;
 	private TicketListViewController ticketListViewController;
 	private SplitPaneViewController splitPaneViewController;
+	private UserController userController;
 	
 	@FXML
 	TilePane menu;
 	
 	public MainViewController() {
 		super("mainView.fxml");
+		userController = new UserController();
 	}
 	
 	public void openLogin() {
@@ -60,18 +64,28 @@ public class MainViewController extends BaseScreenController {
 		this.setCenter(dashboardViewController);
 	}
 	
-	public void openUsers() {
+	public void openUsers(ObservableList<ApplicationUser> users, String title) {
 
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Gebruikers");
+		stage.setTitle(String.format("TicketingSystem - %s",title));
 		
 		splitPaneViewController = new SplitPaneViewController(this);
-		usersViewController = new UserListViewController(this);
+		usersViewController = new UserListViewController(this, users);
 		
 		splitPaneViewController.setLeft(usersViewController);
 		this.setCenter(splitPaneViewController);
 	}
+	
+	public void openEmployeeUsers() {
+		openUsers(userController.getEmployees(),"Werknemers");
+	}
+	
+	public void openCustomerUsers() {
+		openUsers(userController.getCustomers(),"Gebruikers");
+	}
+
+	
 	
 	public void openClients() {
 		Stage stage = (Stage) this.getScene().getWindow();

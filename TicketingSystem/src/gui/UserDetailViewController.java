@@ -140,6 +140,6 @@ public class UserDetailViewController extends BaseScreenController {
 	}
 	
 	public void returnToList() {
-		this.mainViewController.openUsers();
+		this.setVisible(false);
 	}
 }

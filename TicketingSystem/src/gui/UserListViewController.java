@@ -2,6 +2,7 @@ package gui;
 
 import controller.UserController;
 import domain.ApplicationUser;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -38,7 +39,7 @@ public class UserListViewController extends BaseScreenController {
 	private MainViewController mainViewController;
 	private UserController userController;
 	
-	public UserListViewController(MainViewController mainViewController) {
+	public UserListViewController(MainViewController mainViewController, ObservableList<ApplicationUser> users) {
 		super("UserListView.fxml");
 		this.mainViewController = mainViewController;
 		this.userController = new UserController();
@@ -50,15 +51,20 @@ public class UserListViewController extends BaseScreenController {
 		tblColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 		tblColCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
 
-		loadData();
+		loadData(users);
 		
 		TableFilter.forTableView(tblViewUsers).apply();
 	}
 	
+
+	protected void loadData(ObservableList<ApplicationUser> users) {
+		tblViewUsers.getItems().clear();
+		tblViewUsers.setItems(users);
+	}
+	
 	@Override
 	protected void loadData() {
-		tblViewUsers.getItems().clear();
-		tblViewUsers.setItems(userController.getCustomers());
+		
 	}
 	
 	public void editClient(MouseEvent arg0) {

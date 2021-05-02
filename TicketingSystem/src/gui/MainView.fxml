@@ -47,7 +47,7 @@
                   <Font size="18.0" />
                </font>
             </Hyperlink>
-                  <Hyperlink fx:id="urlUsers" onAction="#openUsers" text="Gebruikers">
+                  <Hyperlink fx:id="urlUsers" onAction="#openCustomerUsers" text="Gebruikers">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -57,7 +57,7 @@
                         <Font size="18.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink fx:id="urlSystemUsers" onAction="#openSystemUsers" text="Systeemgebruikers">
+                  <Hyperlink fx:id="urlSystemUsers" onAction="#openEmployeeUsers" text="Systeemgebruikers">
                      <font>
                         <Font size="18.0" />
                      </font>
