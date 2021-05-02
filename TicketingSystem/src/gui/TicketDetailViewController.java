@@ -16,9 +16,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class TicketDetailViewController extends BaseScreenController {
 	
+	@FXML
+	private Pane detailPane;
+	@FXML
+	private VBox detailVBox;
+	@FXML
+	private GridPane detailGridPane;
 	
 	@FXML
 	private TextField txtNr;
@@ -88,27 +97,21 @@ public class TicketDetailViewController extends BaseScreenController {
 				: Constants.btnSubmitCreate;
 		btnSubmit.setText(btnSubmitText);	
 		
+		// init data
+		txtTitle.setText(ticket.getTitle());
+		txtDescription.setText(ticket.getDescription());
+		txtClient.setText(ticket.getClient().getName());			
+		txtStatus.setText(ticket.getStatus().name());
+		txtType.setText(ticket.getType().getName());
+		txtDateClosed.setText(ticket.getDateClosed().toString());
+		txtDateAdded.setText(ticket.getDateAdded().toString());
 		
-		
-			
-			// init data
-			txtTitle.setText(ticket.getTitle());
-			txtDescription.setText(ticket.getDescription());
-			txtClient.setText(ticket.getClient().getName());			
-			txtStatus.setText(ticket.getStatus().name());
-			txtType.setText(ticket.getType().getName());
-			txtDateClosed.setText(ticket.getDateClosed().toString());
-			txtDateAdded.setText(ticket.getDateAdded().toString());
-			
-			if(ticket.getAssignedEngineer() == null) {
-				txtAssignedEngineer.setText("Niet Toegewezen");
-			}else {
-				txtAssignedEngineer.setText(ticket.getAssignedEngineer().getUserName());
-			}
-			
-			
-		
-		
+		if(ticket.getAssignedEngineer() == null) {
+			txtAssignedEngineer.setText("Niet Toegewezen");
+		}else {
+			txtAssignedEngineer.setText(ticket.getAssignedEngineer().getUserName());
+		}
+
 		if(state == WindowState.DETAIL) {
 			// disable controls
 			txtTitle.setDisable(true);
@@ -119,8 +122,7 @@ public class TicketDetailViewController extends BaseScreenController {
 			txtType.setDisable(true);
 			txtDateClosed.setDisable(true);
 			txtDateAdded.setDisable(true);
-			
-		}else {
+		} else {
 			// enable controls
 			txtTitle.setDisable(false);
 			txtDescription.setDisable(false);
@@ -130,8 +132,12 @@ public class TicketDetailViewController extends BaseScreenController {
 			txtType.setDisable(false);
 			txtDateClosed.setDisable(false);
 			txtDateAdded.setDisable(false);
-		
 		}
+		
+		int width = getSplitScreenWidth();
+		detailPane.setMinWidth(width);
+		detailVBox.setMinWidth(width);
+		detailGridPane.setMinWidth(width);
 	}
 	
 	@Override

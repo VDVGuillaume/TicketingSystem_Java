@@ -20,6 +20,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,16 @@ import Constants.Constants;
 import Helpers.IntParser;
 
 public class ClientDetailViewController extends BaseScreenController {
+	
+	@FXML
+	private Pane detailPane;
+	@FXML
+	private VBox detailVBox;
+	@FXML
+	private GridPane detailGridPane;
+	
+	@FXML
+	private Label lblTitle;
 	
 	@FXML
 	private TextField txtName;
@@ -218,7 +231,6 @@ public class ClientDetailViewController extends BaseScreenController {
 				: Constants.btnSubmitCreate;
 		btnSubmit.setText(btnSubmitText);
 		
-		
 		if(state == WindowState.DETAIL || state == WindowState.UPDATE) {
 			if(client.getAddress() == null) {
 				client.setAddress(new Address());
@@ -239,6 +251,10 @@ public class ClientDetailViewController extends BaseScreenController {
 			var telephoneNumber = FXCollections.observableArrayList(client.getTelephoneNumbers());
 			lstTelPhone.getItems().clear();
 			lstTelPhone.setItems(telephoneNumber);
+			
+			lblTitle.setText("Klant details");
+		} else {
+			lblTitle.setText("Nieuwe klant");
 		}
 		
 		if(state == WindowState.DETAIL) {
@@ -270,6 +286,11 @@ public class ClientDetailViewController extends BaseScreenController {
 			txtContactName.setDisable(false);
 			txtTelPhone.setDisable(false);
 		}
+		
+		int width = getSplitScreenWidth();
+		detailPane.setMinWidth(width);
+		detailVBox.setMinWidth(width);
+		detailGridPane.setMinWidth(width);
 	}
 	
 	@Override

@@ -52,7 +52,7 @@ public class TicketListViewController extends BaseScreenController {
 		configureTableView();
 		loadData();
 		TableFilter.forTableView(ticketTableView).apply();
-
+		initializeData();
 	}
 	
 	public void createTicket() {
@@ -73,6 +73,11 @@ public class TicketListViewController extends BaseScreenController {
   	client.setCellValueFactory(new PropertyValueFactory<>("client"));
   	assignedEngineer.setCellValueFactory(new PropertyValueFactory<>("assignedEngineer"));
   }
+  
+	private void initializeData() {
+		int width = getSplitScreenWidth();
+		ticketTableView.setMinWidth(width);
+	}
 
 	@Override
 	protected void loadData() {		

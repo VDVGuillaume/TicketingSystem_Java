@@ -23,9 +23,6 @@ public class ClientListViewController extends BaseScreenController {
 	private MainViewController mainViewController;
 	private ClientController clientController;
 	
-	
-
-	
 	@FXML
 	public  TableView<Client> clientTableView;
 	@FXML 
@@ -48,6 +45,7 @@ public class ClientListViewController extends BaseScreenController {
 		loadData();
 		TableFilter.forTableView(clientTableView).apply();
 
+		initializeData();
 	}
 	
 	public void createClient() {
@@ -65,6 +63,11 @@ public class ClientListViewController extends BaseScreenController {
   	dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
   	address.setCellValueFactory(new PropertyValueFactory<>("address"));
   }
+  
+  private void initializeData() {		
+		int width = getSplitScreenWidth();
+		clientTableView.setMinWidth(width);
+	}
 
 	@Override
 	protected void loadData() {		

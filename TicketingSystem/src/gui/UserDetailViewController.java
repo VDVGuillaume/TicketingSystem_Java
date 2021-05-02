@@ -10,12 +10,26 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
 import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
 
 import Constants.Constants;
 
 public class UserDetailViewController extends BaseScreenController {
+	
+	@FXML
+	private Pane detailPane;
+	@FXML
+	private VBox detailVBox;
+	@FXML
+	private GridPane detailGridPane;
+	
+	@FXML
+	private Label lblTitle;
 	
 	@FXML
 	private TextField txtUsername;
@@ -73,6 +87,7 @@ public class UserDetailViewController extends BaseScreenController {
 		
 		if(state == WindowState.DETAIL || state == WindowState.UPDATE) {
 			// init data
+			lblTitle.setText("Gebruiker details");
 			txtUsername.setText(this.user.getUserName());
 			txtLastName.setText(this.user.getLastName());
 			txtFirstName.setText(this.user.getFirstName());
@@ -80,6 +95,8 @@ public class UserDetailViewController extends BaseScreenController {
 			txtStatus.setText(this.user.getStatus());
 			txtRole.setText(this.user.getRole());
 			txtCompany.setText(this.user.getCompany());
+		} else {
+			lblTitle.setText("Nieuwe gebruiker");
 		}
 		
 		if(state == WindowState.DETAIL) {
@@ -91,7 +108,7 @@ public class UserDetailViewController extends BaseScreenController {
 			txtStatus.setDisable(true);
 			txtRole.setDisable(true);
 			txtCompany.setDisable(true);
-		}else {
+		} else {
 			// enable controls
 			txtUsername.setDisable(false);
 			txtLastName.setDisable(false);
@@ -101,17 +118,22 @@ public class UserDetailViewController extends BaseScreenController {
 			txtRole.setDisable(false);
 			txtCompany.setDisable(false);
 		}
+		
+		int width = getSplitScreenWidth();
+		detailPane.setMinWidth(width);
+		detailVBox.setMinWidth(width);
+		detailGridPane.setMinWidth(width);
 	}
 	
 	public void submit() {
 		if(state == WindowState.DETAIL) {
 			ChangeToUpdateView();
 			return;
-		}else {
+		} else {
 			if(validate()) {
 				if(state == WindowState.CREATE) {
 					// create client
-				}else if(state == WindowState.UPDATE) {
+				} else if(state == WindowState.UPDATE) {
 					// update client
 				}
 				ChangeToDetailView();

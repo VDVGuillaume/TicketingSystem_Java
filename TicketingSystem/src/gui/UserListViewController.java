@@ -4,14 +4,18 @@ import controller.UserController;
 import domain.ApplicationUser;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 
 import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
+
+import Constants.Constants;
 
 public class UserListViewController extends BaseScreenController {
 	@FXML
@@ -54,6 +58,8 @@ public class UserListViewController extends BaseScreenController {
 		loadData(users);
 		
 		TableFilter.forTableView(tblViewUsers).apply();
+		
+		initializeData();
 	}
 	
 
@@ -64,7 +70,11 @@ public class UserListViewController extends BaseScreenController {
 	
 	@Override
 	protected void loadData() {
-		
+	}
+	
+	private void initializeData() {		
+		int width = getSplitScreenWidth();
+		tblViewUsers.setMinWidth(width);
 	}
 	
 	public void editClient(MouseEvent arg0) {
