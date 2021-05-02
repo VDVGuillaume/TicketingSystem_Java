@@ -13,7 +13,7 @@
          <children>
         <TableView fx:id="ticketTableView" minHeight="600.0" minWidth="950.0" onMouseClicked="#editTicket">
       	        <columns>
-      	          <TableColumn fx:id="ticketNr" maxWidth="-Infinity" minWidth="50.0" sortable="true" text="TicketNr" />
+      	          <TableColumn fx:id="ticketnr" maxWidth="-Infinity" minWidth="50.0" sortable="true" text="Ticketnr" />
       	          <TableColumn fx:id="title" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Titel" />
       	          <TableColumn fx:id="status" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Status" />
       	          <TableColumn fx:id="dateAdded" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Datum gecreeërd" /> 

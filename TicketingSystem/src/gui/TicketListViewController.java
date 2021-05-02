@@ -27,7 +27,7 @@ public class TicketListViewController extends BaseScreenController {
 	@FXML
 	public  TableView<Ticket> ticketTableView;
 	@FXML 
-	private TableColumn<Ticket,String> ticketNr;
+	private TableColumn<Ticket,Integer> ticketnr;
 	@FXML 
 	private TableColumn<Ticket,String> title;
 	@FXML 
@@ -65,7 +65,7 @@ public class TicketListViewController extends BaseScreenController {
 	}
 
   protected void configureTableView() {
-  	ticketNr.setCellValueFactory(new PropertyValueFactory<>("ticketNr"));
+  	ticketnr.setCellValueFactory(new PropertyValueFactory<>("ticketnr"));
   	title.setCellValueFactory(new PropertyValueFactory<>("title"));
   	status.setCellValueFactory(new PropertyValueFactory<>("status"));
   	dateAdded.setCellValueFactory(new PropertyValueFactory<>("dateAdded"));

@@ -1,6 +1,8 @@
 package domain;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -22,6 +24,7 @@ public class ApplicationUserRole implements Serializable {
 	
 	@Id	
 	String id;
+	
 	String name;
 	
 	public String getId() {
@@ -39,4 +42,9 @@ public class ApplicationUserRole implements Serializable {
 	public String getName() {
 		return this.name;
 	}
+
+
+	
+	
+	
 }

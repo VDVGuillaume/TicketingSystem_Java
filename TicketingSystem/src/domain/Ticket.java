@@ -37,8 +37,7 @@ public class Ticket implements Serializable {
 
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Ticketnr")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)	
 	public int ticketnr;
 	@Column(name = "Title")
 	public String title;

@@ -103,7 +103,7 @@ public class TicketDetailViewController extends BaseScreenController {
 			if(ticket.getAssignedEngineer() == null) {
 				txtAssignedEngineer.setText("Niet Toegewezen");
 			}else {
-				txtAssignedEngineer.setText(ticket.getAssignedEngineer().getFirstName() + " " + ticket.getAssignedEngineer().getLastName());
+				txtAssignedEngineer.setText(ticket.getAssignedEngineer().getUserName());
 			}
 			
 			

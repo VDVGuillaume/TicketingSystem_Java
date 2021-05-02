@@ -60,7 +60,7 @@ public class ApplicationUser implements Serializable {
 	@Override
 	public String toString() {
 		
-		return String.format("%s-%s",this.userName,this.email);
+		return String.format("%s",this.userName);
 	}	
 	
 	public String getId() {
@@ -153,4 +153,6 @@ public class ApplicationUser implements Serializable {
 	public String getLastName() {
 		return this.lastName;
 	}
+	
+	
 }

@@ -114,4 +114,14 @@ public class Client implements Serializable {
 	public void setTelephoneNumbers(List<String> telephoneNumbers) {
 		this.telephoneNumbers = telephoneNumbers;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("%s",this.getName());
+	}
+	
+	
+	
+	
 }
