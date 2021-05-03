@@ -5,6 +5,7 @@ import controller.LoginController;
 import controller.UserController;
 import domain.ApplicationUser;
 import domain.Client;
+import domain.Contract;
 import domain.Ticket;
 import exceptions.ValidationException;
 import javafx.collections.ObservableList;
@@ -110,6 +111,18 @@ public class MainViewController extends BaseScreenController {
 		splitPaneViewController.setLeft(ticketListViewController);
 		this.setCenter(splitPaneViewController);
 	}
+	
+	public void openContracts() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Contracten");
+		
+		splitPaneViewController = new SplitPaneViewController(this);
+		var contractListViewController = new ContractListViewController(this);
+		
+		splitPaneViewController.setLeft(contractListViewController);
+		this.setCenter(splitPaneViewController);
+	}
 
 	public void openSystemUsers() {
 		//this.mainViewController.openSystemUsers();
@@ -168,6 +181,25 @@ public class MainViewController extends BaseScreenController {
 		var ticketDetailController = new TicketDetailViewController(this,ticket);
 		splitPaneViewController.setRight(ticketDetailController);
 	}
+	
+	public void openContractDetail() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Contracten");
+		
+		var contractDetailController = new ContractDetailViewController(this);
+		splitPaneViewController.setRight(contractDetailController);
+	}
+	
+	public void openContractDetail(Contract contract) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Contracten");
+		
+		var contractDetailController = new ContractDetailViewController(this, contract);
+		splitPaneViewController.setRight(contractDetailController);
+	}
+	
 	public void hideMenu() {
 		menu.setVisible(false);
 	}

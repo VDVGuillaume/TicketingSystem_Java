@@ -53,7 +53,13 @@ public class Contract implements Serializable {
 	
 	public Contract(Date validFrom, Date validTo,	Date dateCreated,	Date dateClosed,
 			ContractType type, ContractStatus status, Client client) {
-		
+		this.validFrom = validFrom;
+		this.validTo = validTo;
+		this.dateCreated = dateCreated;
+		this.dateClosed = dateClosed;
+		this.type = type;
+		this.status = status;
+		this.client = client;
 	}
 	
 	protected Contract() {}
@@ -77,13 +83,17 @@ public class Contract implements Serializable {
 	public Date getDateClosed() {
 		return this.dateClosed;
 	}
-	/*
+	
 	public ContractType getType() {
 		return this.type;
 	}
-	*/
+	
 	public ContractStatus getStatus() {
 		return this.status;
+	}
+	
+	public Client getClient() {
+		return this.client;
 	}
 	
 	public void setValidFrom(Date validFrom) {
@@ -101,12 +111,16 @@ public class Contract implements Serializable {
 	public void setDateClosed(Date dateClosed) {
 		this.dateClosed = dateClosed;
 	}
-	/*
+
 	public void setType(ContractType type) {
 		this.type = type;
 	}
-	*/
+	
 	public void setStatus(ContractStatus status) {
 		this.status = status;
+	}
+	
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }

@@ -26,7 +26,7 @@
          </children></VBox>
    </bottom>
    <top>
-   <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="900.0" prefHeight="80.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+   <VBox alignment="CENTER" minHeight="80.0" minWidth="900.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
       <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="900.0" prefHeight="40.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <ImageView id="imgLogo" fx:id="imgLogo" fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -40,7 +40,7 @@
          </children>
           
       </HBox>
-      <TilePane fx:id="menu" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="900.0" prefHeight="40.0" style="-fx-background-color: #eee;" VBox.vgrow="NEVER">
+      <TilePane fx:id="menu" alignment="CENTER" minWidth="900.0" prefHeight="40.0" style="-fx-background-color: #eee;" VBox.vgrow="NEVER">
                <children>
             <Hyperlink fx:id="urlSystemUsers1" onAction="#openDashboard" text="Dashboard">
                <font>
@@ -57,12 +57,17 @@
                         <Font size="18.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink fx:id="urlSystemUsers" onAction="#openEmployeeUsers" text="Systeemgebruikers">
+                  <Hyperlink fx:id="urlTickets" onAction="#openTickets" text="Tickets">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink fx:id="urlTickets" onAction="#openTickets" text="Tickets">
+               <Hyperlink fx:id="urlContracts" layoutX="589.0" layoutY="13.0" onAction="#openContracts" text="Contracten">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Hyperlink>
+                  <Hyperlink fx:id="urlSystemUsers" onAction="#openEmployeeUsers" text="Systeemgebruikers">
                      <font>
                         <Font size="18.0" />
                      </font>
