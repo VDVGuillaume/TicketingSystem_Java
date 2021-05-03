@@ -36,11 +36,9 @@ public class Contract implements Serializable {
 	Date validTo;
 	Date dateCreated;
 	Date dateClosed;
-	/*
 	@ManyToOne()
 	@JoinColumn(name="TypeContractTypeId")
 	ContractType type;
-	*/
 	ContractStatus status;
 	
 	@ManyToOne

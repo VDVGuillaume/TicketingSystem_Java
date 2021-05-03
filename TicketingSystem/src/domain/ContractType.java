@@ -1,15 +1,38 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractType {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ContractTypes")
+public class ContractType implements Serializable {
 	
-	int contractTypeId;
+	@Id
+	@Column(name="ContractTypeId")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int id;
 	String name;
 	boolean active;
+	TicketCreationTime ticketCreationTime;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+		name="ContractTypeTicketCreationType",
+		joinColumns = @JoinColumn(name = "ContractTypeId"),
+		inverseJoinColumns = @JoinColumn(name = "TicketCreationTypeId")
+	)
 	List<TicketCreationType> ticketCreationTypes;
-	TicketCreationTime ticketcreationTime;
 	
 	public ContractType(String name, boolean active, TicketCreationTime ticketCreationTime) 
 	{
@@ -18,6 +41,8 @@ public class ContractType {
 		setTicketcreationTime(ticketCreationTime);
 		this.ticketCreationTypes = new ArrayList<TicketCreationType>();
 	}
+	
+	protected ContractType() {}
 
 	public String getName() {
 		return name;
@@ -36,14 +61,10 @@ public class ContractType {
 	}
 
 	public TicketCreationTime getTicketcreationTime() {
-		return ticketcreationTime;
+		return ticketCreationTime;
 	}
 
-	public void setTicketcreationTime(TicketCreationTime ticketcreationTime) {
-		this.ticketcreationTime = ticketcreationTime;
+	public void setTicketcreationTime(TicketCreationTime ticketCreationTime) {
+		this.ticketCreationTime = ticketCreationTime;
 	}
-	
-	
-	
-
 }

@@ -8,6 +8,8 @@
     <class>domain.Attachment</class>
     <class>domain.Contact</class>
     <class>domain.Contract</class>
+    <class>domain.ContractType</class>
+    <class>domain.TicketCreationType</class>
     <class>domain.TicketType</class>
     <class>domain.ApplicationUser</class>
     <class>domain.ApplicationUserRole</class>
