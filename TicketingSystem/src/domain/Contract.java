@@ -88,6 +88,13 @@ public class Contract implements Serializable {
 		return this.type;
 	}
 	
+	public String getContractType() {
+		if(type == null)
+			return "";
+					
+		return this.type.getName();
+	}
+	
 	public ContractStatus getStatus() {
 		return this.status;
 	}
@@ -95,7 +102,11 @@ public class Contract implements Serializable {
 	public Client getClient() {
 		return this.client;
 	}
-	
+	/*
+	public String getClientName() {
+		return this.client.getName();
+	}
+	*/
 	public void setValidFrom(Date validFrom) {
 		this.validFrom = validFrom;
 	}
