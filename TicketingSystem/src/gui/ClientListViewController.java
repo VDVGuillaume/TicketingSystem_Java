@@ -49,12 +49,12 @@ public class ClientListViewController extends BaseScreenController {
 	}
 	
 	public void createClient() {
-		this.mainViewController.openClientDetail();
+		this.mainViewController.openClientDetail(clientController);
 	}
 	
 	public void editClient(MouseEvent arg0) {
 		if(arg0.getClickCount() > 1)
-			this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem());		
+			this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem(), clientController);		
 	}
 
   protected void configureTableView() {

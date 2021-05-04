@@ -40,6 +40,7 @@ public class ClientController {
 	public void updateClient(Client client) {
 		
 		clientRepo.updateClient(client);
+		clients.set(clients.indexOf(client), client);
 	}
 	
 	public Client getClientById(int id) {

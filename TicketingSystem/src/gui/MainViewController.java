@@ -1,5 +1,6 @@
 package gui;
 
+import controller.ClientController;
 import controller.DomainController;
 import controller.LoginController;
 import controller.UserController;
@@ -146,21 +147,21 @@ public class MainViewController extends BaseScreenController {
 		splitPaneViewController.setRight(userDetailController);
 	}
 	
-	public void openClientDetail() {
+	public void openClientDetail(ClientController clientController) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Klanten - Nieuw");
 		
-		var clientDetailController = new ClientDetailViewController(this);
+		var clientDetailController = new ClientDetailViewController(this, clientController);
 		splitPaneViewController.setRight(clientDetailController);
 	}
 	
-	public void openClientDetail(Client client) {
+	public void openClientDetail(Client client, ClientController clientController) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Klanten - " + client.getName());
 		
-		var clientDetailController = new ClientDetailViewController(this, client);
+		var clientDetailController = new ClientDetailViewController(this, clientController, client);
 		splitPaneViewController.setRight(clientDetailController);
 	}
 

@@ -86,23 +86,23 @@ public class ClientDetailViewController extends BaseScreenController {
 	private Client client;
 	private WindowState state;	
 	
-	public ClientDetailViewController(MainViewController mainViewController, Client client) {
+	public ClientDetailViewController(MainViewController mainViewController, ClientController clientController, Client client) {
 		super("ClientDetailView.fxml");
 		this.client = client;
 		state = WindowState.DETAIL;
-		initialize(mainViewController);
+		initialize(mainViewController, clientController);
 	}
 	
 	
-	public ClientDetailViewController(MainViewController mainViewController) {
+	public ClientDetailViewController(MainViewController mainViewController, ClientController clientController) {
 		super("ClientDetailView.fxml");
 		state = WindowState.CREATE;
-		initialize(mainViewController);
+		initialize(mainViewController, clientController);
 	}
 	
-	private void initialize(MainViewController mainViewController) {
+	private void initialize(MainViewController mainViewController, ClientController clientController) {
 		this.mainViewController = mainViewController;
-		this.clientController = new ClientController();
+		this.clientController = clientController;
 		
 		txtTelPhone.textProperty().addListener(new ChangeListener<String>() {
 		    @Override
