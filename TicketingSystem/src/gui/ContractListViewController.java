@@ -4,6 +4,7 @@ import java.util.Date;
 import org.controlsfx.control.table.TableFilter;
 import controller.ContractController;
 import domain.Contract;
+import domain.ContractType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +24,7 @@ public class ContractListViewController extends BaseScreenController {
 	@FXML
 	private TableColumn<Contract,Integer> id;
 	@FXML
-	private TableColumn<Contract,String> type;
+	private TableColumn<Contract,String> contractType;
 	@FXML
 	private TableColumn<Contract,String> status;
 	@FXML 
@@ -58,7 +59,7 @@ public class ContractListViewController extends BaseScreenController {
 
   protected void configureTableView() {
   	id.setCellValueFactory(new PropertyValueFactory<>("id"));
-  	//type.setCellValueFactory(new PropertyValueFactory<>("contractType"));
+  	contractType.setCellValueFactory(new PropertyValueFactory<>("contractType"));
   	status.setCellValueFactory(new PropertyValueFactory<>("status"));
   	validFrom.setCellValueFactory(new PropertyValueFactory<>("validFrom"));
   	validTo.setCellValueFactory(new PropertyValueFactory<>("validTo"));

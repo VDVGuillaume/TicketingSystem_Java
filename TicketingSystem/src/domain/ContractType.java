@@ -67,4 +67,10 @@ public class ContractType implements Serializable {
 	public void setTicketcreationTime(TicketCreationTime ticketCreationTime) {
 		this.ticketCreationTime = ticketCreationTime;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("%s",this.getName());
+	}
 }
