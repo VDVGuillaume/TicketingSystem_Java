@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import Helpers.PasswordHasher;
 import Providers.DateProvider;
@@ -53,7 +54,9 @@ public class UserController {
 	public ApplicationUser createCustomer(String email, String firstName, String lastName, String username, String password) {
 		String passwordHashed = new PasswordHasher().hashPassword(password);
 		
-		var user = new ApplicationUser(email, firstName, lastName, username, passwordHashed, Constants.Constants.CUSTOMER_ROLE);
+		Optional<ApplicationUserRole> customerRole = userRoles.stream().filter(x -> x.getName() == Constants.Constants.CUSTOMER_ROLE).findFirst();
+		
+		var user = new ApplicationUser(email, firstName, lastName, username, passwordHashed, customerRole.get());
 		
 		userRepo.createUser(user);
 		

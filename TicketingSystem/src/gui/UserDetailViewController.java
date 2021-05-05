@@ -245,7 +245,8 @@ public class UserDetailViewController extends BaseScreenController {
 				;
 		
 		if(state == WindowState.CREATE) {
-			disableButton = disableButton || txtPassword.getText().isEmpty();
+			var password = txtPassword.getText();
+			disableButton = disableButton || password.isEmpty();
 		}
 		
 		btnSubmit.setDisable(disableButton);

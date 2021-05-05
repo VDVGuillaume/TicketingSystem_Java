@@ -65,11 +65,13 @@ public class ApplicationUser implements Serializable {
 		
 	}
 	
-	public ApplicationUser(String email, String firstName, String lastName, String username, String passwordHashed, String role) {
-		if(role == Constants.CUSTOMER_ROLE) {
-			userRoles.add(new ApplicationUserRole());
-		}
-		
+	public ApplicationUser(String email, String firstName, String lastName, String username, String passwordHashed, ApplicationUserRole role) {
+		userRoles.add(role);
+		setEmail(email);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setUserName(username);
+		setPasswordHash(passwordHashed);
 	}
 	
 	@Override
