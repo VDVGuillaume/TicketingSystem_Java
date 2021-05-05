@@ -58,7 +58,7 @@ public class ContractListViewController extends BaseScreenController {
 
   protected void configureTableView() {
   	id.setCellValueFactory(new PropertyValueFactory<>("id"));
-  	type.setCellValueFactory(new PropertyValueFactory<>("contractType"));
+  	//type.setCellValueFactory(new PropertyValueFactory<>("contractType"));
   	status.setCellValueFactory(new PropertyValueFactory<>("status"));
   	validFrom.setCellValueFactory(new PropertyValueFactory<>("validFrom"));
   	validTo.setCellValueFactory(new PropertyValueFactory<>("validTo"));
