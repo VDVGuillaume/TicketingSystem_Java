@@ -3,9 +3,14 @@ package gui;
 import controller.UserController;
 import domain.Address;
 import domain.ApplicationUser;
+import domain.Client;
+import domain.Contact;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,10 +19,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+import java.util.List;
+
 import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
 
 import Constants.Constants;
+import Helpers.IntParser;
 
 public class UserDetailViewController extends BaseScreenController {
 	
@@ -45,6 +53,8 @@ public class UserDetailViewController extends BaseScreenController {
 	private TextField txtRole;
 	@FXML
 	private TextField txtCompany;
+	@FXML
+	private PasswordField txtPassword;
 	
 	@FXML
 	private Button btnSubmit;
@@ -63,16 +73,76 @@ public class UserDetailViewController extends BaseScreenController {
 		this.username = user.getUserName();
 		this.state = WindowState.DETAIL;
 		
-		initializeData();
+		initialize();
 	}
 	
 	public UserDetailViewController(MainViewController mainViewController) {
-			super("UserDetailView.fxml");
-			this.mainViewController = mainViewController;
-			this.userController = new UserController();
-			state = WindowState.CREATE;
+		super("UserDetailView.fxml");
+		this.mainViewController = mainViewController;
+		this.userController = new UserController();
+		state = WindowState.CREATE;
 			
-			initializeData();
+		initialize();
+	}
+	
+	private void initialize() {
+		txtUsername.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {		    		
+		    	validate();
+		    }
+		});
+		
+		txtLastName.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtFirstName.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtEmail.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtStatus.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtRole.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		txtCompany.textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable,
+		            String oldValue, String newValue) {
+		    	validate();
+		    }
+		});
+		
+		initializeData();
 	}
 	
 	private void initializeData() {
@@ -108,6 +178,7 @@ public class UserDetailViewController extends BaseScreenController {
 			txtStatus.setDisable(true);
 			txtRole.setDisable(true);
 			txtCompany.setDisable(true);
+			txtPassword.setDisable(true);
 		} else {
 			// enable controls
 			txtUsername.setDisable(false);
@@ -117,6 +188,7 @@ public class UserDetailViewController extends BaseScreenController {
 			txtStatus.setDisable(false);
 			txtRole.setDisable(false);
 			txtCompany.setDisable(false);
+			txtPassword.setDisable(false);
 		}
 		
 		int width = getSplitScreenWidth();
@@ -129,12 +201,19 @@ public class UserDetailViewController extends BaseScreenController {
 		if(state == WindowState.DETAIL) {
 			ChangeToUpdateView();
 			return;
-		} else {
+		}else {
 			if(validate()) {
 				if(state == WindowState.CREATE) {
-					// create client
-				} else if(state == WindowState.UPDATE) {
-					// update client
+					// create user
+					this.user = userController.createCustomer(txtEmail.getText(), txtFirstName.getText(), txtLastName.getText(), txtUsername.getText(), txtPassword.getText());
+				}else if(state == WindowState.UPDATE) {
+					// update user
+					user.setEmail(txtEmail.getText());
+					user.setFirstName(txtFirstName.getText());
+					user.setLastName(txtLastName.getText());
+					user.setUserName(txtUsername.getText());
+					
+					userController.updateUser(user, txtPassword.getText());
 				}
 				ChangeToDetailView();
 				return;
@@ -153,8 +232,25 @@ public class UserDetailViewController extends BaseScreenController {
 	}
 	
 	private boolean validate() {
-		// TODO
-		return false;
+		if(state == WindowState.DETAIL) {
+			btnSubmit.setDisable(false);
+			return false;
+		}
+		
+		boolean disableButton =		
+				txtEmail.getText().isEmpty() ||
+				txtFirstName.getText().isEmpty() ||
+				txtLastName.getText().isEmpty() ||
+				txtUsername.getText().isEmpty() 
+				;
+		
+		if(state == WindowState.CREATE) {
+			disableButton = disableButton || txtPassword.getText().isEmpty();
+		}
+		
+		btnSubmit.setDisable(disableButton);
+		
+		return !disableButton;
 	}
 	
 	@Override

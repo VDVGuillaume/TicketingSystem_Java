@@ -13,4 +13,7 @@ public interface IUserRepository {
 	List<ApplicationUser> getAll();
 	List<ApplicationUser> getAllCustomers();
 	List<ApplicationUser> getAllEmployees();
+	List<ApplicationUserRole> GetAllRoles();
+	ApplicationUser createUser(ApplicationUser user);
+	ApplicationUser updateUser(ApplicationUser user);
 }

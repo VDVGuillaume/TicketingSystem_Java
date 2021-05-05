@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import Helpers.EmailValidator;
 import exceptions.ValidationException;
 
 @Entity
@@ -27,7 +28,7 @@ public class Contact implements Serializable {
 	
 	public Contact(String email, String firstname, String surname) {
 		
-		if(!emailCheck(email)) {
+		if(!EmailValidator.emailCheck(email)) {
 			throw new ValidationException("Invalid mail");
 		}
 		
@@ -38,15 +39,6 @@ public class Contact implements Serializable {
 	
 	public Contact() {
 		
-	}
-	
-	
-	public static boolean emailCheck(String email) {
-		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-		 
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
 	}
 	
 	@Override

@@ -31,6 +31,7 @@ import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
 
 import Constants.Constants;
+import Helpers.EmailValidator;
 import Helpers.IntParser;
 
 public class ClientDetailViewController extends BaseScreenController {
@@ -384,7 +385,7 @@ public class ClientDetailViewController extends BaseScreenController {
 			return;
 		}
 		
-		if(!Contact.emailCheck(txtContactEmail.getText())) {
+		if(!EmailValidator.emailCheck(txtContactEmail.getText())) {
 			btnContactAdd.setDisable(true);
 			return;
 		}

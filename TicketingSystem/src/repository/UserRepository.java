@@ -6,15 +6,18 @@ import java.util.Collections;
 import java.util.List;
 
 import domain.ApplicationUser;
+import domain.ApplicationUserRole;
 import domain.UserLoginAttempt;
 
 public class UserRepository implements IUserRepository {
     private UserDaoJpa userDao;
     private UserLoginAttemptDaoJpa userLoginAttemptDao;
+    private UserRoleDaoJpa userRoleDao;
 
     public UserRepository(){
     	this.userDao = new UserDaoJpa();
     	this.userLoginAttemptDao = new UserLoginAttemptDaoJpa();
+    	this.userRoleDao = new UserRoleDaoJpa();
     }
     
 	@Override
@@ -93,4 +96,37 @@ public class UserRepository implements IUserRepository {
 	public List<ApplicationUser> getAll() {
 		return userDao.findAll();
 	}
+	
+	@Override 
+	public List<ApplicationUserRole> GetAllRoles(){
+		return userRoleDao.findAll();
+	}
+	
+	@Override
+	public 	ApplicationUser createUser(ApplicationUser user) {
+		try {
+			GenericDaoJpa.startTransaction();	
+			userDao.insert(user);
+			GenericDaoJpa.commitTransaction();
+		}catch(Exception ex){
+			GenericDaoJpa.rollbackTransaction();
+			throw ex;
+		}
+		
+		return user;
+	}
+	
+	@Override
+	public 	ApplicationUser updateUser(ApplicationUser user) {
+		try {
+			GenericDaoJpa.startTransaction();	
+			userDao.update(user);
+			GenericDaoJpa.commitTransaction();
+		}catch(Exception ex){
+			GenericDaoJpa.rollbackTransaction();
+			throw ex;
+		}
+		
+		return user;
+	}	
 }
