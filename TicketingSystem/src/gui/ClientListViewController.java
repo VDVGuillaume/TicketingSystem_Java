@@ -23,9 +23,6 @@ public class ClientListViewController extends BaseScreenController {
 	private MainViewController mainViewController;
 	private ClientController clientController;
 	
-	private ObservableList<Client> clientList;
-
-	
 	@FXML
 	public  TableView<Client> clientTableView;
 	@FXML 
@@ -48,29 +45,33 @@ public class ClientListViewController extends BaseScreenController {
 		loadData();
 		TableFilter.forTableView(clientTableView).apply();
 
+		initializeData();
 	}
 	
 	public void createClient() {
-		this.mainViewController.openClientDetail();
+		this.mainViewController.openClientDetail(clientController);
 	}
 	
 	public void editClient(MouseEvent arg0) {
 		if(arg0.getClickCount() > 1)
-			this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem());		
+			this.mainViewController.openClientDetail(clientTableView.getSelectionModel().getSelectedItem(), clientController);		
 	}
 
-    protected void configureTableView() {
-    	
-    	id.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	name.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
-    	address.setCellValueFactory(new PropertyValueFactory<>("address"));
-    }
+  protected void configureTableView() {
+  	id.setCellValueFactory(new PropertyValueFactory<>("id"));
+  	name.setCellValueFactory(new PropertyValueFactory<>("name"));
+  	dateCreated.setCellValueFactory(new PropertyValueFactory<>("dateCreated"));
+  	address.setCellValueFactory(new PropertyValueFactory<>("address"));
+  }
+  
+  private void initializeData() {		
+		int width = getSplitScreenWidth();
+		clientTableView.setMinWidth(width);
+	}
 
 	@Override
-	protected void loadData() {
-		var clients = clientController.getClients();
+	protected void loadData() {		
 		clientTableView.getItems().clear();
-		clientTableView.getItems().addAll(clients);				
+		clientTableView.setItems(clientController.getClients());		
 	}
 }

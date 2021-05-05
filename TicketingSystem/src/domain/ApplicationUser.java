@@ -14,6 +14,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import Constants.Constants;
+import Helpers.EmailValidator;
+import exceptions.ValidationException;
+
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 
@@ -56,11 +61,23 @@ public class ApplicationUser implements Serializable {
 	  inverseJoinColumns = @JoinColumn(name = "RoleId"))
 	List<ApplicationUserRole> userRoles = new ArrayList<ApplicationUserRole>();
 	
+	public ApplicationUser() {
+		
+	}
+	
+	public ApplicationUser(String email, String firstName, String lastName, String username, String passwordHashed, ApplicationUserRole role) {
+		userRoles.add(role);
+		setEmail(email);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setUserName(username);
+		setPasswordHash(passwordHashed);
+	}
 	
 	@Override
 	public String toString() {
 		
-		return String.format("%s-%s",this.userName,this.email);
+		return String.format("%s",this.userName);
 	}	
 	
 	public String getId() {
@@ -87,6 +104,10 @@ public class ApplicationUser implements Serializable {
 	}
 	
 	public void setEmail(String email) {
+		if(!EmailValidator.emailCheck(email)) {
+			throw new ValidationException("Invalid mail");
+		}
+		
 		this.email = email;
 	}
 	
@@ -153,4 +174,6 @@ public class ApplicationUser implements Serializable {
 	public String getLastName() {
 		return this.lastName;
 	}
+	
+	
 }

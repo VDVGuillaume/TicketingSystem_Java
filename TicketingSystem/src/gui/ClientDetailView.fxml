@@ -12,15 +12,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" type="Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="detailPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0">
+      <VBox fx:id="detailVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800">
          <children>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="900.0">
+            <Label fx:id="lblTitle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="880.0" text="Klant details" textFill="#004087">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <GridPane fx:id="detailGridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="199.0" prefWidth="800">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="250.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="719.0" minWidth="10.0" prefWidth="650.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="719.0" minWidth="10.0" prefWidth="600.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -34,7 +43,7 @@
                   <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Naam(*)" textFill="#004087">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Naam(*)" textFill="#004087" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -42,7 +51,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Land(*)" textFill="#004087" GridPane.rowIndex="1">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Land(*)" textFill="#004087" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -50,7 +59,7 @@
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Telefoon nummers(*)" textFill="#004087" GridPane.rowIndex="6">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Telefoon nummers(*)" textFill="#004087" GridPane.rowIndex="6" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -62,8 +71,8 @@
                   <TextField fx:id="txtCountry" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <ListView fx:id="lstTelPhone" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="btnTelPhoneRemove" mnemonicParsing="false" text="Verwijder" />
+                        <ListView fx:id="lstTelPhone" onMouseClicked="#lstTelPhoneClicked" prefHeight="200.0" prefWidth="565.0" />
+                        <Button fx:id="btnTelPhoneRemove" mnemonicParsing="false" onMouseClicked="#removeTelPhone" text="Verwijder" />
                         <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="(telefoon) Telefoon nummer" textFill="#004087">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -74,32 +83,32 @@
                               <Insets />
                            </VBox.margin>
                         </TextField>
-                        <Button fx:id="btnTelPhoneAdd" mnemonicParsing="false" text="Voeg telefoon nummer toe" />
+                        <Button fx:id="btnTelPhoneAdd" mnemonicParsing="false" onMouseClicked="#addTelPhone" text="Voeg telefoon nummer toe" />
                      </children>
                   </VBox>
                   <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submit" style="-fx-background-color: #004087;" text="Wijzigen" textFill="WHITE" GridPane.rowIndex="8">
             </Button>
-                  <Hyperlink maxWidth="-Infinity" minWidth="-Infinity" onAction="#returnToList" prefWidth="100.0" text="Terug naar lijst" GridPane.rowIndex="8">
+                  <Hyperlink maxWidth="-Infinity" minWidth="-Infinity" onAction="#returnToList" prefWidth="100.0" text="Sluiten" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets top="50.0" />
                      </GridPane.margin>
                   </Hyperlink>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Stad(*)" textFill="#004087" GridPane.rowIndex="2">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Stad(*)" textFill="#004087" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Postcode(*)" textFill="#004087" GridPane.rowIndex="3">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Postcode(*)" textFill="#004087" GridPane.rowIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Straat(*)" textFill="#004087" GridPane.rowIndex="4">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Straat(*)" textFill="#004087" GridPane.rowIndex="4" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Huisnummer(*)" textFill="#004087" GridPane.rowIndex="5">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Huisnummer(*)" textFill="#004087" GridPane.rowIndex="5" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -108,19 +117,19 @@
                   <TextField fx:id="txtPostalCode" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="txtStreet" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="txtStreetNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Contacten(*)" textFill="#004087" GridPane.rowIndex="7">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="Contacten(*)" textFill="#004087" GridPane.rowIndex="7" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <ListView fx:id="lstContact" prefHeight="200.0" prefWidth="200.0">
+                        <ListView fx:id="lstContact" onMouseClicked="#lstContactClicked" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ListView>
-                        <Button fx:id="btnContactRemove" mnemonicParsing="false" text="Verwijder" />
+                        <Button fx:id="btnContactRemove" mnemonicParsing="false" onMouseClicked="#removeContact" text="Verwijder" />
                         <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="225.0" text="(contact) Voornaam" textFill="#004087">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -143,18 +152,12 @@
                            </font>
                         </Label>
                         <TextField fx:id="txtContactEmail" />
-                        <Button fx:id="btnContactAdd" mnemonicParsing="false" text="Voeg contact toe" />
+                        <Button fx:id="btnContactAdd" mnemonicParsing="false" onMouseClicked="#addContact" text="Voeg contact toe" />
                      </children>
                   </VBox>
                </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
             </GridPane>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
       </VBox>
    </children>
 </fx:root>

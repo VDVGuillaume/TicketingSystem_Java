@@ -1,9 +1,15 @@
 package gui;
 
+import controller.ClientController;
 import controller.DomainController;
 import controller.LoginController;
+import controller.UserController;
+import domain.ApplicationUser;
 import domain.Client;
+import domain.Contract;
+import domain.Ticket;
 import exceptions.ValidationException;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,21 +27,22 @@ public class MainViewController extends BaseScreenController {
 	private UserListViewController usersViewController;
 	private UserDetailViewController userDetailController;
 	private ClientListViewController clientListViewController;
+	private TicketListViewController ticketListViewController;
+	private SplitPaneViewController splitPaneViewController;
+	private UserController userController;
 	
 	@FXML
 	TilePane menu;
 	
 	public MainViewController() {
 		super("mainView.fxml");
+		userController = new UserController();
 	}
-	
-	
 	
 	public void openLogin() {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Log in");
-		stage.setHeight(600);
 		
 		if (loginViewController == null)
 		{
@@ -50,7 +57,6 @@ public class MainViewController extends BaseScreenController {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Dashboard");
-		stage.setHeight(900);
 		
 		if (dashboardViewController == null)
 		{
@@ -60,70 +66,141 @@ public class MainViewController extends BaseScreenController {
 		this.setCenter(dashboardViewController);
 	}
 	
-	public void openUsers() {
+	public void openUsers(ObservableList<ApplicationUser> users, String title) {
 
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Gebruikers");
+		stage.setTitle(String.format("TicketingSystem - %s",title));
 		
-		if (usersViewController == null)
-		{
-			usersViewController = new UserListViewController(this);
-		}
+		splitPaneViewController = new SplitPaneViewController(this);
+		usersViewController = new UserListViewController(this, users);
 		
-		this.setCenter(usersViewController);
+		splitPaneViewController.setLeft(usersViewController);
+		this.setCenter(splitPaneViewController);
 	}
+	
+	public void openEmployeeUsers() {
+		openUsers(userController.getEmployees(),"Werknemers");
+	}
+	
+	public void openCustomerUsers() {
+		openUsers(userController.getCustomers(),"Gebruikers");
+	}
+
+	
 	
 	public void openClients() {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
 		stage.setTitle("TicketingSystem - Klanten");
 		
-		if (clientListViewController == null)
-		{
-			clientListViewController = new ClientListViewController(this);
-		}
+		splitPaneViewController = new SplitPaneViewController(this);
+		clientListViewController = new ClientListViewController(this);
 		
-		this.setCenter(clientListViewController);
+		splitPaneViewController.setLeft(clientListViewController);
+		this.setCenter(splitPaneViewController);
+	}
+	
+	public void openTickets() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Tickets");
+		
+		splitPaneViewController = new SplitPaneViewController(this);
+		ticketListViewController = new TicketListViewController(this);
+		
+		splitPaneViewController.setLeft(ticketListViewController);
+		this.setCenter(splitPaneViewController);
+	}
+	
+	public void openContracts() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Contracten");
+		
+		splitPaneViewController = new SplitPaneViewController(this);
+		var contractListViewController = new ContractListViewController(this);
+		
+		splitPaneViewController.setLeft(contractListViewController);
+		this.setCenter(splitPaneViewController);
 	}
 
 	public void openSystemUsers() {
 		//this.mainViewController.openSystemUsers();
 	}
 	
-	public void openUserDetail(String username) {
+	public void openUserDetail() {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Gebruiker - " + username);
+		stage.setTitle("TicketingSystem - Gebruikers - Nieuw");
 		
-		if (userDetailController == null)
-		{
-			userDetailController = new UserDetailViewController(this, username);
-		} else {
-			userDetailController.reloadData(username);
-		}
-		
-		this.setCenter(userDetailController);
+		userDetailController = new UserDetailViewController(this);
+		splitPaneViewController.setRight(userDetailController);
 	}
 	
-	public void openClientDetail() {
+	public void openUserDetail(ApplicationUser user) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Klant - Nieuw");
+		stage.setTitle("TicketingSystem - Gebruikers - " + user.getUserName());
 		
-		var clientDetailController = new ClientDetailViewController(this);
-		this.setCenter(clientDetailController);
+		userDetailController = new UserDetailViewController(this, user);
+		splitPaneViewController.setRight(userDetailController);
 	}
 	
-	public void openClientDetail(Client client) {
+	public void openClientDetail(ClientController clientController) {
 		Stage stage = (Stage) this.getScene().getWindow();
 		
-		stage.setTitle("TicketingSystem - Klant - " + client.getName());
+		stage.setTitle("TicketingSystem - Klanten - Nieuw");
 		
-		var clientDetailController = new ClientDetailViewController(this, client);
-		this.setCenter(clientDetailController);
+		var clientDetailController = new ClientDetailViewController(this, clientController);
+		splitPaneViewController.setRight(clientDetailController);
+	}
+	
+	public void openClientDetail(Client client, ClientController clientController) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Klanten - " + client.getName());
+		
+		var clientDetailController = new ClientDetailViewController(this, clientController, client);
+		splitPaneViewController.setRight(clientDetailController);
 	}
 
+	public void openTicketDetail() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Tickets - Nieuw");
+		
+		var ticketDetailController = new TicketDetailViewController(this);
+		splitPaneViewController.setRight(ticketDetailController);
+	}
+	
+	public void openTicketDetail(Ticket ticket) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Tickets - Nieuw");
+		
+		var ticketDetailController = new TicketDetailViewController(this,ticket);
+		splitPaneViewController.setRight(ticketDetailController);
+	}
+	
+	public void openContractDetail() {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Contracten");
+		
+		var contractDetailController = new ContractDetailViewController(this);
+		splitPaneViewController.setRight(contractDetailController);
+	}
+	
+	public void openContractDetail(Contract contract) {
+		Stage stage = (Stage) this.getScene().getWindow();
+		
+		stage.setTitle("TicketingSystem - Contracten");
+		
+		var contractDetailController = new ContractDetailViewController(this, contract);
+		splitPaneViewController.setRight(contractDetailController);
+	}
+	
 	public void hideMenu() {
 		menu.setVisible(false);
 	}

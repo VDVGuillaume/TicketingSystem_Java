@@ -2,13 +2,20 @@ package gui;
 
 import controller.UserController;
 import domain.ApplicationUser;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
+
 import org.controlsfx.control.table.TableFilter;
 import org.controlsfx.control.table.TableFilter.Builder;
+
+import Constants.Constants;
 
 public class UserListViewController extends BaseScreenController {
 	@FXML
@@ -30,13 +37,13 @@ public class UserListViewController extends BaseScreenController {
 	public TableColumn tblColCompany;
 	
 	@FXML
-	public Button btnUserDetails;
+	public Button btnCreateUser;
 	
 	
 	private MainViewController mainViewController;
 	private UserController userController;
 	
-	public UserListViewController(MainViewController mainViewController) {
+	public UserListViewController(MainViewController mainViewController, ObservableList<ApplicationUser> users) {
 		super("UserListView.fxml");
 		this.mainViewController = mainViewController;
 		this.userController = new UserController();
@@ -46,33 +53,40 @@ public class UserListViewController extends BaseScreenController {
 		tblColName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		tblColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tblColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-		tblColRole.setCellValueFactory(new PropertyValueFactory<>("role"));
 		tblColCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
 
-		loadData();
+		loadData(users);
 		
 		TableFilter.forTableView(tblViewUsers).apply();
 		
-		tblViewUsers.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-	    if (newSelection != null) {
-	    	if (tblViewUsers.getSelectionModel().getSelectedItem().getClass().getName() == "domain.ApplicationUser"
-	    			&& tblViewUsers.getSelectionModel().getSelectedItem().getUserName() != null) {
-	    		btnUserDetails.setDisable(false);
-	    	} else {
-	    		btnUserDetails.setDisable(true);
-	    	}
-	    }
-	});
+		initializeData();
+	}
+	
+
+	protected void loadData(ObservableList<ApplicationUser> users) {
+		tblViewUsers.getItems().clear();
+		tblViewUsers.setItems(users);
 	}
 	
 	@Override
 	protected void loadData() {
-		var users = userController.getAllUsers();
-		tblViewUsers.getItems().clear();
-		tblViewUsers.getItems().addAll(users);
+	}
+	
+	private void initializeData() {		
+		int width = getSplitScreenWidth();
+		tblViewUsers.setMinWidth(width);
+	}
+	
+	public void editClient(MouseEvent arg0) {
+		if(arg0.getClickCount() > 1)
+			this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem());		
+	}
+	
+	public void createUser() {
+		this.mainViewController.openUserDetail();
 	}
 	
 	public void openUserDetail() {
-		this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem().getUserName());
+		this.mainViewController.openUserDetail(tblViewUsers.getSelectionModel().getSelectedItem());
 	}
 }

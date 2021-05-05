@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root minHeight="500.0" minWidth="900.0" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox minHeight="500.0" minWidth="950.0">
+         <children>
+        <TableView fx:id="ticketTableView" minHeight="600.0" minWidth="950.0" onMouseClicked="#editTicket">
+      	        <columns>
+      	          <TableColumn fx:id="ticketnr" maxWidth="-Infinity" minWidth="50.0" sortable="true" text="Ticketnr" />
+      	          <TableColumn fx:id="title" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Titel" />
+      	          <TableColumn fx:id="status" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Status" />
+      	          <TableColumn fx:id="dateAdded" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Datum gecreeërd" /> 
+      	          <TableColumn fx:id="dateClosed" maxWidth="-Infinity" minWidth="150.0" sortable="true" text="Datum gesloten" /> 
+      	          <TableColumn fx:id="client" maxWidth="-Infinity" minWidth="150.0" prefWidth="280.0" sortable="true" text="Klant" />  
+      	          <TableColumn fx:id="assignedEngineer" maxWidth="-Infinity" minWidth="150.0" prefWidth="280.0" sortable="true" text="Toegekende ingenieur" />	
+      	        </columns>
+      	</TableView>
+         </children>
+      </VBox>
+    </children>
+</fx:root>

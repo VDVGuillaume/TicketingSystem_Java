@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root minHeight="500.0" minWidth="700" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox minHeight="500.0" minWidth="700">
+         <children>
+        <TableView fx:id="contractTableView" minHeight="600.0" minWidth="700" onMouseClicked="#editContract">
+      	        <columns>
+      	          <TableColumn fx:id="id" maxWidth="-Infinity" minWidth="50" sortable="true" text="Id" />
+      	          <TableColumn fx:id="contractType" minWidth="150.0" prefWidth="200.0" sortable="true" text="Type" />
+      	          <TableColumn fx:id="status" maxWidth="145.0" minWidth="88.0" prefWidth="108.0" sortable="true" text="Status" />  
+      	          <TableColumn fx:id="validFrom" maxWidth="312.0" minWidth="50.0" prefWidth="90.0" sortable="true" text="Geldig van" />
+                  <TableColumn fx:id="validTo" minWidth="50.0" prefWidth="90.0" text="Geldig tot" />
+                  <TableColumn fx:id="client" prefWidth="100.0" text="Klant" />  
+      	        </columns>
+      	</TableView>    
+      	<Button fx:id="btnCreateClient" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createContract" prefWidth="120.0" style="-fx-background-color: #004087;" text="Nieuw contract" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+      	</Button>
+         </children>
+      </VBox>
+    </children>
+</fx:root>

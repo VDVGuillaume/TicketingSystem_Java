@@ -14,4 +14,23 @@ public class TicketType implements Serializable {
 	@Id
 	@Column(name="Id")
 	int id;
+	String Name;
+	int RequiredSLA;
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public int getRequiredSLA() {
+		return RequiredSLA;
+	}
+	public void setRequiredSLA(int requiredSLA) {
+		RequiredSLA = requiredSLA;
+	}
+	public int getId() {
+		return id;
+	}
+	
+	
 }

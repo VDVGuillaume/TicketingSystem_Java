@@ -4,6 +4,7 @@ import domain.ApplicationUser;
 import domain.Ticket;
 
 import java.time.Instant;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityNotFoundException;
