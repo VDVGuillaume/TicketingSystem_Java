@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root minHeight="500.0" minWidth="700" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="500.0" minWidth="900.0" type="Pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox minHeight="500.0" minWidth="700">
+      <VBox minHeight="500.0" minWidth="900.0">
          <children>
-        <TableView fx:id="clientTableView" minHeight="600.0" minWidth="700" onMouseClicked="#editClient">
+        <TableView fx:id="clientTableView" minHeight="600.0" minWidth="950.0" onMouseClicked="#editClient">
       	        <columns>
       	          <TableColumn fx:id="id" maxWidth="-Infinity" minWidth="50" sortable="true" text="Id" />
       	          <TableColumn fx:id="name" maxWidth="-Infinity" minWidth="150" sortable="true" text="Naam" />
